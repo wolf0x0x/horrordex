@@ -75,6 +75,7 @@ const faqSchema = entry.data.faqs.length > 0 ? {
         <p class="eyebrow">SURVIVAL ARTICLE / {entry.data.guideId}</p>
         <h1>{entry.data.title.replace("Guide:", "Guide: ")} </h1>
         <p class="lead">{entry.data.summary}</p>
+        <AdSlot label="Article top AdSense unit" slotId={siteConfig.ads.slots.inArticle} format="horizontal" />
         <nav class="article-toc" aria-label="Article table of contents">
           <a href="#overview">Overview</a>
           {entry.data.recommendedItems.length > 0 && <a href="#ranked-list">Ranked List</a>}
@@ -96,7 +97,7 @@ const faqSchema = entry.data.faqs.length > 0 ? {
                     <p class="micro">{item.platform} / {item.price} / {item.type}</p>
                     <p>{item.summary}</p>
                     <p>{item.whyPlay}</p>
-                    <a class="terminal-button" href={item.link}>Open game</a>
+                    <a class="terminal-button" href={item.link} target="_blank" rel="nofollow noopener">Open game</a>
                   </div>
                 </article>
               ))}
@@ -131,11 +132,12 @@ const faqSchema = entry.data.faqs.length > 0 ? {
             <h2>Downloaded Assets & Attribution</h2>
             <div class="resource-list">
               {entry.data.assetCredits.map((asset) => (
-                <p><strong>{asset.title}</strong> by {asset.creator}, licensed {asset.license}. Source: <a href={asset.source}>{asset.source}</a></p>
+                <p><strong>{asset.title}</strong> by {asset.creator}, licensed {asset.license}. Source: <a href={asset.source} target="_blank" rel="nofollow noopener">{asset.source}</a></p>
               ))}
             </div>
           </>
         )}
+        <AdSlot label="Article bottom AdSense unit" slotId={siteConfig.ads.slots.inArticle} format="auto" />
       </article>
 
       <aside class="toc" aria-label="Guide metadata">
@@ -150,7 +152,7 @@ const faqSchema = entry.data.faqs.length > 0 ? {
         <a href="/">Return to matrix</a>
         {relatedEntities.map((entity) => <a href={`/entities/${entity.slug}/`}>Related: {entity.data.title}</a>)}
         {relatedGuides.map((guide) => <a href={`/guides/${guide.slug}/`}>Related: {guide.data.title}</a>)}
-        <AdSlot label="AdSense sticky sidebar 300x600" slotId={siteConfig.ads.slots.stickySidebar} />
+        <AdSlot label="AdSense sticky sidebar 300x600" slotId={siteConfig.ads.slots.stickySidebar} format="vertical" />
       </aside>
     </section>
   </main>

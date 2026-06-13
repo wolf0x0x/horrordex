@@ -140,8 +140,23 @@ h1 span, .danger { color: var(--red); }
 .risk-tag.red { border-color: var(--line-hot); color: var(--red); background: rgba(255,77,90,.1); }
 .risk-tag.green { border-color: rgba(79,240,162,.4); color: var(--green); }
 .risk-tag.amber { border-color: rgba(255,193,92,.44); color: var(--amber); }
-.ad-slot { display: grid; place-items: center; min-height: 160px; margin-top: 18px; padding: 14px; color: rgba(255,255,255,.42); font-size: 11px; text-align: center; text-transform: uppercase; background: repeating-linear-gradient(135deg, rgba(255,255,255,.035), rgba(255,255,255,.035) 8px, transparent 8px, transparent 16px), rgba(14,18,23,.72); }
-.ad-slot small { color: rgba(255,255,255,.28); }
+.ad-slot {
+  display: grid;
+  place-items: center;
+  min-height: 160px;
+  margin-top: 18px;
+  padding: 14px;
+  color: rgba(255,255,255,.42);
+  font-size: 11px;
+  text-align: center;
+  text-transform: uppercase;
+  background: repeating-linear-gradient(135deg, rgba(255,255,255,.035), rgba(255,255,255,.035) 8px, transparent 8px, transparent 16px), rgba(14,18,23,.72);
+}
+.article-body > .ad-slot { margin: 24px 0; }
+.ad-slot.configured { min-height: 280px; padding: 0; background: rgba(6,8,12,.5); }
+.ad-slot.configured .adsbygoogle { width: 100%; min-height: 100px; }
+.ad-placeholder { display: grid; gap: 4px; color: rgba(255,255,255,.42); }
+.ad-slot small, .ad-placeholder small { color: rgba(255,255,255,.28); }
 .section-head { display: flex; align-items: end; justify-content: space-between; gap: 16px; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
 .section-head h2 { font-size: clamp(26px, 4vw, 46px); text-transform: uppercase; }
 .priority-guides { margin: 0 0 32px; }

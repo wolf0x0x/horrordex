@@ -4,7 +4,6 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import AdSlot from "../../components/AdSlot.astro";
 import stats from "../../data/roblox-stats.json";
 import siteConfig from "../../data/site-config.json";
-import siteConfig from "../../data/site-config.json";
 
 export async function getStaticPaths() {
   const entities = await getCollection("entities");
@@ -45,6 +44,7 @@ const telemetry = stats[entry.data.entityId] ?? null;
     <section class="dossier-layout">
       <article class="article-body">
         <h2>Overview</h2>
+        <AdSlot label="Entity article top AdSense unit" slotId={siteConfig.ads.slots.inArticle} format="horizontal" />
         <Content />
         <h2>MVP Static Hooks</h2>
         <p>
@@ -55,11 +55,12 @@ const telemetry = stats[entry.data.entityId] ?? null;
             <h2>Downloaded Assets & Attribution</h2>
             <div class="resource-list">
               {entry.data.assetCredits.map((asset) => (
-                <p><strong>{asset.title}</strong> by {asset.creator}, licensed {asset.license}. Source: <a href={asset.source}>{asset.source}</a></p>
+                <p><strong>{asset.title}</strong> by {asset.creator}, licensed {asset.license}. Source: <a href={asset.source} target="_blank" rel="nofollow noopener">{asset.source}</a></p>
               ))}
             </div>
           </>
         )}
+        <AdSlot label="Entity article bottom AdSense unit" slotId={siteConfig.ads.slots.inArticle} format="auto" />
       </article>
 
       <aside class="toc" aria-label="Dossier metadata">
@@ -74,7 +75,7 @@ const telemetry = stats[entry.data.entityId] ?? null;
         </div>
         <a href="/">Return to matrix</a>
         {relatedGuides.map((guide) => <a href={`/guides/${guide.slug}/`}>Related: {guide.data.title}</a>)}
-        <AdSlot label="AdSense in-article 300x250" slotId={siteConfig.ads.slots.inArticle} />
+        <AdSlot label="AdSense dossier sticky sidebar 300x600" slotId={siteConfig.ads.slots.stickySidebar} format="vertical" />
       </aside>
     </section>
   </main>
