@@ -119,7 +119,7 @@ h1 span, .danger { color: var(--red); }
   color: var(--muted);
   font-size: 11px;
 }
-.stats-grid, .matrix-layout, .dossier-layout, .guide-layout { display: grid; gap: 18px; }
+.stats-grid, .priority-guides, .matrix-layout, .dossier-layout, .guide-layout { display: grid; gap: 18px; }
 .stats-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); margin: 0 0 28px; }
 .stat, .panel, .entity-card, .ad-slot, .toc, .article-body { border: 1px solid var(--line); background: var(--panel); box-shadow: var(--shadow); }
 .stat { padding: 18px; }
@@ -144,6 +144,10 @@ h1 span, .danger { color: var(--red); }
 .ad-slot small { color: rgba(255,255,255,.28); }
 .section-head { display: flex; align-items: end; justify-content: space-between; gap: 16px; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
 .section-head h2 { font-size: clamp(26px, 4vw, 46px); text-transform: uppercase; }
+.priority-guides { margin: 0 0 32px; }
+.priority-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+.priority-grid .entity-card { border-color: rgba(107,215,255,.34); }
+.priority-grid .entity-visual { min-height: 220px; }
 .entity-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
 .entity-card { display: grid; min-height: 100%; }
 .entity-card[hidden] { display: none; }
@@ -208,6 +212,7 @@ h1 span, .danger { color: var(--red); }
 @media (max-width: 1080px) {
   .hero, .dossier-head, .dossier-layout, .guide-layout, .matrix-layout { grid-template-columns: 1fr; }
   .stats-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .priority-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .entity-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .entity-card.featured { grid-column: span 2; grid-template-columns: 1fr; }
   .toc { position: static; }
@@ -217,7 +222,7 @@ h1 span, .danger { color: var(--red); }
   .nav { width: 100%; overflow-x: auto; padding-bottom: 2px; }
   .site-shell { width: min(100% - 24px, 1480px); }
   .hero-copy, .dossier-title, .hero-media, .guide-hero { min-height: 390px; }
-  .stats-grid, .entity-grid { grid-template-columns: 1fr; }
+  .stats-grid, .priority-grid, .entity-grid { grid-template-columns: 1fr; }
   .entity-card.featured { grid-column: auto; }
   .section-head { align-items: start; flex-direction: column; }
   .data-row { grid-template-columns: 1fr; }

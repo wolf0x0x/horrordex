@@ -94,6 +94,10 @@ faqs:
     answer: "They can, but parents should configure privacy, chat, spending, and server permissions before play."
   - question: "Is everything here free?"
     answer: "Most entries are free-to-start or have free access paths, but optional purchases vary by platform."
+  - question: "What should I do first?"
+    answer: "Start with account safety, basic controls, and one short beginner-friendly game before joining larger public servers."
+  - question: "How often is this guide updated?"
+    answer: "The page is designed for static rebuilds, so recommendations and screenshots can be refreshed during the content pipeline."
 assetCredits:
   - title: "Best Free Crazy Games to Play in 2026 generated cover"
     creator: "Codex local static asset pipeline"

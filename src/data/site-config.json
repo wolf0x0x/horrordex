@@ -40,6 +40,25 @@
     "image": "/assets/img/liminal-hallway.jpg",
     "caption": "CAM_09 / corridor drift"
   },
+  "home": {
+    "priorityGuideIds": [
+      "GUIDE_BACKROOMS_FREE_HORROR",
+      "GUIDE_ROBLOX_BEGINNER_2026",
+      "GUIDE_MINECRAFT_SURVIVAL_2026",
+      "GUIDE_CRAZY_GAMES_BEST_FREE"
+    ],
+    "matrixGuideOrder": [
+      "GUIDE_BACKROOMS_FREE_HORROR",
+      "GUIDE_ROBLOX_BEGINNER_2026",
+      "GUIDE_MINECRAFT_SURVIVAL_2026",
+      "GUIDE_CRAZY_GAMES_BEST_FREE",
+      "GUIDE_BACKROOMS_COMPLETE",
+      "GUIDE_BEST_HORROR_2026",
+      "GUIDE_SANDBOX_GAMES_2026",
+      "GUIDE_CASUAL_GAMES_2026",
+      "REF_LEVEL_0"
+    ]
+  },
   "navigation": {
     "primaryLinks": [
       {

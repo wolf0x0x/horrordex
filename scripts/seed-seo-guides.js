@@ -24,7 +24,9 @@ const commonFaqs = {
   platform: [
     ["Is this guide beginner friendly?", "Yes. It assumes no prior platform knowledge and focuses on safe first steps."],
     ["Can kids use these platforms?", "They can, but parents should configure privacy, chat, spending, and server permissions before play."],
-    ["Is everything here free?", "Most entries are free-to-start or have free access paths, but optional purchases vary by platform."]
+    ["Is everything here free?", "Most entries are free-to-start or have free access paths, but optional purchases vary by platform."],
+    ["What should I do first?", "Start with account safety, basic controls, and one short beginner-friendly game before joining larger public servers."],
+    ["How often is this guide updated?", "The page is designed for static rebuilds, so recommendations and screenshots can be refreshed during the content pipeline."]
   ]
 };
 
@@ -111,15 +113,37 @@ Use this list as a starting route. Pick Roblox for quick multiplayer, Itch.io fo
 
 ## First Day Route
 
-Punch trees, craft tools, collect food, make torches, and sleep before night escalates. A dirt shelter is acceptable. A lost inventory is more expensive than an ugly first base.
+Punch trees, craft a wooden pickaxe, upgrade to stone tools, gather food, and make torches before the first night. New players should build a small shelter near a landmark rather than wandering until dark. A dirt shelter is acceptable. A lost inventory is more expensive than an ugly first base.
+
+Place torches outside the entrance, put a bed and chest inside, and keep your first crafting table in one fixed location. That small routine turns the world from a random map into a base you can reliably return to.
+
+## Resource Priority
+
+Your first stable loop is wood, stone, coal, food, wool, and iron. Do not chase diamonds before you can replace basic tools quickly. Iron armor, a shield, a bucket, and spare food prevent more deaths than early diamond gear.
+
+Keep one emergency chest with cooked food, extra torches, blocks, and a spare pickaxe. Survival gets easier when a death does not erase your ability to recover.
 
 ## Stable Progression
 
-After food and shelter, build a mine entrance, mark it with torches, and keep one chest for emergency supplies. Villages are powerful because beds, crops, and trading reduce early randomness.
+After food and shelter, build a mine entrance, mark it with torches, and keep one chest for emergency supplies. Villages are powerful because beds, crops, and trading reduce early randomness. If you find a village, protect villagers from night mobs before you start trading.
+
+Build farms before large houses. Wheat, carrots, potatoes, and animal pens create a stable food supply, while a simple tree farm keeps tools and torches cheap. The best early base is not beautiful; it is repeatable.
+
+## Base Building Rules
+
+Use fences, doors, torches, and clear paths. Spawn-proof the area around your bed and storage, then add landmarks such as towers, colored blocks, or paths. New players lose more progress from bad navigation than from hard combat.
+
+Keep mines, farms, storage, and portals separated enough that one mistake does not destroy everything. Label tunnels with signs or block patterns so return trips stay readable.
 
 ## Nether Prep
 
-Do not enter the Nether without blocks, food, spare tools, and a clear return marker. The safest players are boring players who label paths and over-pack supplies.`
+Do not enter the Nether without blocks, food, spare tools, gold armor, a shield, and a clear return marker. The safest players are boring players who label paths and over-pack supplies.
+
+Build a small cobblestone shell around the portal, note the coordinates, and bring blocks for bridging. Your first Nether goal is usually quartz, fortress scouting, or blaze rods, not a long expedition.
+
+## 2026 Survival Mindset
+
+Modern Minecraft survival rewards planning more than speed. Treat each session as a small objective: secure food, upgrade storage, map a cave, improve the base, prepare for the Nether, or build an enchantment setup. Small finished loops keep the world playable for longer than one risky sprint toward endgame.`
   },
   {
     slug: "crazy-games-best-free-games",
@@ -163,17 +187,37 @@ This ranking favors games that are easy to start, readable on a laptop, and frie
     faqs: commonFaqs.platform,
     body: `Roblox is less a single game than a platform of player-made experiences. New players should learn account safety, privacy controls, and discovery habits before worrying about Robux or rare cosmetics.
 
+## Account Setup
+
+Create an account with a strong password, verify the email address, and avoid using a display name that reveals personal information. New players should learn the difference between username, display name, friends, followers, and private messages before joining crowded servers.
+
+If the player is a child, set the correct age, review parental controls, and disable spending until the family has agreed on rules. Roblox is fun because discovery is easy, but that also makes safety settings part of the onboarding process.
+
 ## First Settings to Check
 
 Review chat permissions, friend requests, spending limits, and private server settings. For younger players, these settings matter more than any individual game recommendation.
+
+Use privacy settings to control who can message, chat, invite, and join. Check purchase controls before adding payment methods. If a game asks players to leave Roblox, share personal contact details, or trade outside the platform, treat it as a red flag.
 
 ## Finding Good Horror Games
 
 Search broad terms like horror, doors, backrooms, survival, and co-op, then check ratings, player count, and recent update dates. Good Roblox horror games usually teach rules clearly before increasing pressure.
 
+Start with readable experiences such as DOORS-style room progression, Backrooms-inspired co-op maps, and short survival rounds. A good first horror game should make failure understandable: players should know whether they died from sound, line of sight, a puzzle mistake, or a missed route.
+
+## Beginner Controls and Interface
+
+Before joining intense games, learn camera control, shift lock, sprint, crouch, inventory, respawn, and server hopping. Most Roblox frustration comes from not understanding the interface while other players move quickly.
+
+Use favorites and follows to save good experiences. Read update notes when a game changes mechanics, because Roblox horror games often adjust entity behavior, room layouts, or monetization.
+
 ## Robux Basics
 
-Robux is optional for most discovery. Treat paid items as cosmetics or convenience, not as a requirement for enjoying the platform.`
+Robux is optional for most discovery. Treat paid items as cosmetics or convenience, not as a requirement for enjoying the platform. New players should avoid impulse purchases until they understand whether a pass is permanent, cosmetic, or only useful in one game.
+
+## Safe First Week Plan
+
+Day one: configure privacy and play a few short experiences. Day two: favorite good games and learn controls. Day three: try one horror game with friends. Day four: review spending and chat settings. By the end of the first week, the player should know how to find games, leave bad servers, report problems, and avoid off-platform scams.`
   },
   {
     slug: "best-horror-games-2026",

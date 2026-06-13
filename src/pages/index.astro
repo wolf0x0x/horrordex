@@ -13,6 +13,16 @@ const totalPopulation = Object.values(stats).reduce((sum, item) => sum + Number(
 const featuredEntity = entities.find((entry) => entry.data.entityId === siteConfig.hero.featuredEntityId) ?? entities.find((entry) => entry.data.featured) ?? entities[0];
 const primaryGuide = guides.find((entry) => entry.data.guideId === siteConfig.hero.primaryGuideId) ?? guides.find((entry) => entry.data.featured) ?? guides[0];
 const sortedEntities = [...entities].sort((a, b) => Number(b.data.featured) - Number(a.data.featured));
+const priorityGuideIds = siteConfig.home?.priorityGuideIds ?? [];
+const matrixGuideOrder = siteConfig.home?.matrixGuideOrder ?? [];
+const guideRank = (guideId: string) => {
+  const index = matrixGuideOrder.indexOf(guideId);
+  return index === -1 ? 999 : index;
+};
+const priorityGuides = priorityGuideIds
+  .map((guideId) => guides.find((entry) => entry.data.guideId === guideId))
+  .filter(Boolean);
+const sortedGuides = [...guides].sort((a, b) => guideRank(a.data.guideId) - guideRank(b.data.guideId) || a.data.title.localeCompare(b.data.title));
 const origins = [...new Set([
   ...entities.map((entry) => entry.data.gameSource),
   ...guides.map((entry) => entry.data.topic)
@@ -61,6 +71,28 @@ const severities = [
       <div class="stat"><strong>0</strong><span>Runtime servers</span></div>
     </section>
 
+    <section class="priority-guides" aria-labelledby="priority-title">
+      <div class="section-head">
+        <h2 id="priority-title">Priority Traffic Guides</h2>
+        <p class="micro">P0/P1 entry pages now pinned above the matrix</p>
+      </div>
+      <div class="priority-grid">
+        {priorityGuides.map((entry) => entry && (
+          <EntityCard
+            title={entry.data.title}
+            href={`/guides/${entry.slug}/`}
+            recordId={entry.data.guideId}
+            image={entry.data.image}
+            summary={entry.data.summary}
+            hazardLevel={entry.data.hazardLevel}
+            source={entry.data.topic}
+            categoryHref={`/categories/${slugify(entry.data.topic)}/`}
+            population={stats[entry.data.guideId]?.live_population}
+          />
+        ))}
+      </div>
+    </section>
+
     <div class="matrix-layout" id="matrix">
       <aside class="panel" aria-label="Matrix controls">
         <div class="panel-title"><span>Input parameters</span><span>v0.1</span></div>
@@ -103,7 +135,7 @@ const severities = [
               featured={entry.data.featured}
             />
           ))}
-          {guides.map((entry) => (
+          {sortedGuides.map((entry) => (
             <EntityCard
               title={entry.data.title}
               href={`/guides/${entry.slug}/`}
@@ -127,11 +159,11 @@ const severities = [
     </div>
   </main>
   <script is:inline>
-    const pageSize = 6;
+    const pageSize = 12;
     const search = document.querySelector("[data-record-search]");
     const originFilters = Array.from(document.querySelectorAll("[data-origin-filter]"));
     const severityFilters = Array.from(document.querySelectorAll("[data-severity-filter]"));
-    const cards = Array.from(document.querySelectorAll("[data-record-card]"));
+    const cards = Array.from(document.querySelectorAll(".entity-grid [data-record-card]"));
     const prevButton = document.querySelector("[data-page-prev]");
     const nextButton = document.querySelector("[data-page-next]");
     const pageStatus = document.querySelector("[data-page-status]");
