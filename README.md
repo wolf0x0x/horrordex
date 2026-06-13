@@ -11,13 +11,15 @@ Pure static Jamstack MVP for `horrordex.xyz`.
 - Client-side matrix search, URL query filters, pagination, and static category pages with no external runtime dependency.
 - Google Analytics `G-2TVGXD1WHL`, AdSense Auto Ads, and `ads.txt`.
 - `scripts/sync-static-content.js` for Markdown generation and image download.
+- `scripts/seed-seo-guides.js` for the first SEO guide matrix and generated WebP cover assets.
 - `scripts/fetch-roblox-status.js` for scheduled static data refresh.
 - GitHub Actions pipeline for periodic refresh and Cloudflare Pages deployment.
-- Three core pages:
+- Core MVP pages:
   - `/` entity matrix
   - `/entities/seek/` dossier page
   - `/guides/level-0/` longform survival guide
-  - `/categories/the-backrooms/` and `/categories/roblox-doors/` category pages
+  - 8 seeded SEO guide pages covering Backrooms, Roblox, Minecraft, Crazy Games, horror, sandbox, and casual games
+  - Static category pages for every content cluster
 
 ## Local Commands
 
@@ -25,9 +27,12 @@ Pure static Jamstack MVP for `horrordex.xyz`.
 npm install
 npm run dev
 npm run sync:content
+npm run seed:guides
 npm run sync:roblox
 npm run build:sync
 ```
+
+`npm run build:sync` runs icons, content sync, SEO guide seeding, Roblox telemetry refresh, and the Astro static build.
 
 ## Cloudflare Pages
 

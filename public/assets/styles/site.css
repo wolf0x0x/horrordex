@@ -176,6 +176,20 @@ h1 span, .danger { color: var(--red); }
 .article-body h2:first-child { margin-top: 0; padding-top: 0; border-top: 0; }
 .article-body h3 { margin-top: 24px; color: var(--amber); font-size: 18px; }
 .article-body ul, .article-body ol { color: #c3ccd1; padding-left: 22px; }
+.article-toc { display: flex; flex-wrap: wrap; gap: 8px; margin: 22px 0 8px; padding-bottom: 18px; border-bottom: 1px solid var(--line); }
+.article-toc a { min-height: 30px; padding: 5px 9px; border: 1px solid var(--line); color: var(--cyan); text-decoration: none; font-size: 11px; text-transform: uppercase; }
+.recommendation-list { display: grid; gap: 14px; }
+.recommendation-card { display: grid; grid-template-columns: 54px minmax(0, 1fr); gap: 16px; padding: 16px; border: 1px solid var(--line); background: rgba(0,0,0,.2); }
+.recommendation-card .rank { display: grid; place-items: center; min-height: 54px; border: 1px solid var(--line-hot); color: var(--red); font-size: 22px; }
+.recommendation-card h3 { margin-top: 0; }
+.compare-table { display: grid; overflow: hidden; border: 1px solid var(--line); }
+.compare-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(120px, .6fr) minmax(120px, .8fr); border-bottom: 1px solid rgba(255,255,255,.08); }
+.compare-row:last-child { border-bottom: 0; }
+.compare-row span { padding: 10px; color: #c3ccd1; font-size: 12px; }
+.compare-head span { color: var(--red); text-transform: uppercase; }
+.faq-list { display: grid; gap: 10px; }
+.faq-list details { border: 1px solid var(--line); padding: 12px 14px; background: rgba(0,0,0,.18); }
+.faq-list summary { cursor: pointer; color: var(--amber); font-weight: 700; }
 .data-table { display: grid; gap: 1px; overflow: hidden; border: 1px solid var(--line); }
 .data-row { display: grid; grid-template-columns: 130px minmax(0, 1fr); background: rgba(255,255,255,.035); }
 .data-row span, .data-row strong { padding: 11px 12px; }
@@ -207,4 +221,5 @@ h1 span, .danger { color: var(--red); }
   .entity-card.featured { grid-column: auto; }
   .section-head { align-items: start; flex-direction: column; }
   .data-row { grid-template-columns: 1fr; }
+  .recommendation-card, .compare-row { grid-template-columns: 1fr; }
 }

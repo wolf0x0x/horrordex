@@ -39,6 +39,9 @@ jobs:
       - name: Sync static content
         run: npm run sync:content
 
+      - name: Seed SEO guide matrix
+        run: npm run seed:guides
+
       - name: Build
         run: npm run build -- --base=/
 

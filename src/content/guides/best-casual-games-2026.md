@@ -1,0 +1,71 @@
+---
+title: "2026 年最佳休闲解压游戏推荐"
+guideId: "GUIDE_CASUAL_GAMES_2026"
+topic: "Casual Games"
+articleType: "list"
+hazardLevel: "Class 0: Relaxed"
+summary: "A 2026 casual game list for players who want low-pressure, quick-start, relaxing games across browser, mobile, sandbox, puzzle, and cozy categories."
+image: "/assets/img/guides/best-casual-games-2026.webp"
+updated: "2026-06-13"
+featured: false
+keywords:
+  - "best casual games 2026"
+  - "休闲游戏推荐"
+  - "relaxing games"
+relatedEntityIds: []
+relatedGuideIds:
+  - "GUIDE_CRAZY_GAMES_BEST_FREE"
+  - "GUIDE_SANDBOX_GAMES_2026"
+recommendedItems:
+  - name: "Stardew Valley"
+    platform: "PC/Console/Mobile"
+    price: "Paid"
+    type: "Cozy farming"
+    summary: "A calm long-term routine about farming, relationships, and small upgrades."
+    whyPlay: "Best for low-pressure progress."
+    link: "https://www.stardewvalley.net/"
+  - name: "Unpacking"
+    platform: "PC/Console"
+    price: "Paid"
+    type: "Cozy puzzle"
+    summary: "A quiet object-placement game that tells story through rooms."
+    whyPlay: "Best for short reflective sessions."
+    link: "https://store.steampowered.com/"
+  - name: "Browser puzzle games"
+    platform: "Browser"
+    price: "Free"
+    type: "Quick puzzle"
+    summary: "Daily and browser puzzles are easy to start and stop without losing momentum."
+    whyPlay: "Best for breaks between work."
+    link: "https://www.crazygames.com/t/puzzle"
+  - name: "Minecraft Creative Mode"
+    platform: "PC/Console/Mobile"
+    price: "Paid"
+    type: "Creative sandbox"
+    summary: "Creative mode removes survival pressure and turns the game into a building notebook."
+    whyPlay: "Best relaxing sandbox mode."
+    link: "https://www.minecraft.net/"
+  - name: "Roblox casual tycoon games"
+    platform: "Roblox"
+    price: "Free"
+    type: "Incremental casual"
+    summary: "Tycoon and simulator experiences give fast progression with simple goals."
+    whyPlay: "Best for casual multiplayer downtime."
+    link: "https://www.roblox.com/discover"
+faqs:
+  - question: "Is this guide beginner friendly?"
+    answer: "Yes. It assumes no prior platform knowledge and focuses on safe first steps."
+  - question: "Can kids use these platforms?"
+    answer: "They can, but parents should configure privacy, chat, spending, and server permissions before play."
+  - question: "Is everything here free?"
+    answer: "Most entries are free-to-start or have free access paths, but optional purchases vary by platform."
+assetCredits:
+  - title: "2026 年最佳休闲解压游戏推荐 generated cover"
+    creator: "Codex local static asset pipeline"
+    license: "Site-owned generated image"
+    source: "scripts/seed-seo-guides.js"
+---
+
+Casual games are not shallow by default. The best ones reduce friction: quick starts, clear goals, soft failure, and progress that does not punish you for taking a break.
+
+This list focuses on games that work when you want decompression rather than adrenaline.

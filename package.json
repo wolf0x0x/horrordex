@@ -6,10 +6,11 @@
   "scripts": {
     "dev": "astro dev",
     "icons": "node scripts/generate-icons.js",
+    "seed:guides": "node scripts/seed-seo-guides.js",
     "sync:content": "node scripts/sync-static-content.js",
     "sync:roblox": "node scripts/fetch-roblox-status.js",
     "build": "astro build",
-    "build:sync": "npm run icons && npm run sync:content && npm run sync:roblox && astro build",
+    "build:sync": "npm run icons && npm run sync:content && npm run seed:guides && npm run sync:roblox && astro build",
     "preview": "astro preview"
   },
   "dependencies": {

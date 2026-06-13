@@ -4,7 +4,6 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import AdSlot from "../../components/AdSlot.astro";
 import stats from "../../data/roblox-stats.json";
 import siteConfig from "../../data/site-config.json";
-import siteConfig from "../../data/site-config.json";
 
 export async function getStaticPaths() {
   const guides = await getCollection("guides");
@@ -17,14 +16,51 @@ export async function getStaticPaths() {
 const { entry } = Astro.props;
 const { Content } = await render(entry);
 const entities = await getCollection("entities");
+const guides = await getCollection("guides");
 const relatedEntities = entities.filter((entity) => entry.data.relatedEntityIds.includes(entity.data.entityId));
+const relatedGuides = guides.filter((guide) => entry.data.relatedGuideIds.includes(guide.data.guideId));
 const telemetry = stats[entry.data.guideId] ?? null;
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": entry.data.title,
+  "description": entry.data.summary,
+  "dateModified": entry.data.updated,
+  "keywords": entry.data.keywords,
+  "image": entry.data.image
+};
+const itemListSchema = entry.data.recommendedItems.length > 0 ? {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": entry.data.title,
+  "itemListElement": entry.data.recommendedItems.map((item, index) => ({
+    "@type": "ListItem",
+    "position": index + 1,
+    "name": item.name,
+    "url": item.link
+  }))
+} : null;
+const faqSchema = entry.data.faqs.length > 0 ? {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": entry.data.faqs.map((faq) => ({
+    "@type": "Question",
+    "name": faq.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.answer
+    }
+  }))
+} : null;
 ---
 <BaseLayout
   title={`${entry.data.title} | ${siteConfig.seo.guideTitleSuffix}`}
   description={entry.data.summary}
   current="guide"
 >
+  <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+  {itemListSchema && <script type="application/ld+json" set:html={JSON.stringify(itemListSchema)} />}
+  {faqSchema && <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />}
   <main class="site-shell">
     <figure class="hero-media guide-hero">
       <img src={entry.data.image} alt={`${entry.data.title} visual reference`} />
@@ -39,7 +75,56 @@ const telemetry = stats[entry.data.guideId] ?? null;
         <p class="eyebrow">SURVIVAL ARTICLE / {entry.data.guideId}</p>
         <h1>{entry.data.title.replace("Guide:", "Guide: ")} </h1>
         <p class="lead">{entry.data.summary}</p>
+        <nav class="article-toc" aria-label="Article table of contents">
+          <a href="#overview">Overview</a>
+          {entry.data.recommendedItems.length > 0 && <a href="#ranked-list">Ranked List</a>}
+          {entry.data.recommendedItems.length > 0 && <a href="#quick-compare">Quick Compare</a>}
+          {entry.data.faqs.length > 0 && <a href="#faq">FAQ</a>}
+        </nav>
+        <h2 id="overview">Overview</h2>
         <Content />
+
+        {entry.data.recommendedItems.length > 0 && (
+          <>
+            <h2 id="ranked-list">Recommended Games</h2>
+            <div class="recommendation-list">
+              {entry.data.recommendedItems.map((item, index) => (
+                <article class="recommendation-card">
+                  <div class="rank">{String(index + 1).padStart(2, "0")}</div>
+                  <div>
+                    <h3>{item.name}</h3>
+                    <p class="micro">{item.platform} / {item.price} / {item.type}</p>
+                    <p>{item.summary}</p>
+                    <p>{item.whyPlay}</p>
+                    <a class="terminal-button" href={item.link}>Open game</a>
+                  </div>
+                </article>
+              ))}
+            </div>
+
+            <h2 id="quick-compare">Quick Compare</h2>
+            <div class="compare-table">
+              <div class="compare-row compare-head"><span>Game</span><span>Platform</span><span>Best for</span></div>
+              {entry.data.recommendedItems.map((item) => (
+                <div class="compare-row"><span>{item.name}</span><span>{item.platform}</span><span>{item.type}</span></div>
+              ))}
+            </div>
+          </>
+        )}
+
+        {entry.data.faqs.length > 0 && (
+          <>
+            <h2 id="faq">FAQ</h2>
+            <div class="faq-list">
+              {entry.data.faqs.map((faq) => (
+                <details>
+                  <summary>{faq.question}</summary>
+                  <p>{faq.answer}</p>
+                </details>
+              ))}
+            </div>
+          </>
+        )}
 
         {entry.data.assetCredits.length > 0 && (
           <>
@@ -64,6 +149,7 @@ const telemetry = stats[entry.data.guideId] ?? null;
         </div>
         <a href="/">Return to matrix</a>
         {relatedEntities.map((entity) => <a href={`/entities/${entity.slug}/`}>Related: {entity.data.title}</a>)}
+        {relatedGuides.map((guide) => <a href={`/guides/${guide.slug}/`}>Related: {guide.data.title}</a>)}
         <AdSlot label="AdSense sticky sidebar 300x600" slotId={siteConfig.ads.slots.stickySidebar} />
       </aside>
     </section>

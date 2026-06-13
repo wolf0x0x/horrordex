@@ -32,6 +32,9 @@ jobs:
       - name: Generate Browser Icons
         run: npm run icons
 
+      - name: Seed SEO Guide Matrix
+        run: npm run seed:guides
+
       - name: Execute Build-Time Roblox Telemetry Sync
         run: npm run sync:roblox
 
