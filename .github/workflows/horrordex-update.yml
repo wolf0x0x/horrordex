@@ -1,0 +1,58 @@
+name: Horrordex 3-Day Content Update
+
+on:
+  schedule:
+    - cron: "0 18 */3 * *"
+  workflow_dispatch:
+
+jobs:
+  content-update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      deployments: write
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Resolve 3-day content cycle
+        id: cycle
+        run: npm run content:update
+
+      - name: Build static site
+        run: npm run build:sync
+
+      - name: Upload static artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: horrordex-cycle-${{ steps.cycle.outputs.cycle }}-dist
+          path: dist
+          retention-days: 14
+
+      - name: Deploy to Cloudflare Pages
+        if: ${{ env.CLOUDFLARE_API_TOKEN != '' && env.CLOUDFLARE_ACCOUNT_ID != '' }}
+        uses: cloudflare/pages-action@v1
+        with:
+          apiToken: ${{ env.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ env.CLOUDFLARE_ACCOUNT_ID }}
+          projectName: horrordex-xyz
+          directory: dist
+
+      - name: Print update summary
+        run: |
+          echo "Cycle: ${{ steps.cycle.outputs.cycle }}"
+          echo "Type: ${{ steps.cycle.outputs.type }}"
+          echo "Title: ${{ steps.cycle.outputs.title }}"
+          echo "URL: ${{ steps.cycle.outputs.url }}"

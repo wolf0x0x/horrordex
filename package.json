@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "astro dev",
     "clean:astro": "node scripts/clean-astro-cache.js",
+    "content:update": "node scripts/horrordex-content-update.js",
     "icons": "node scripts/generate-icons.js",
     "seed:guides": "node scripts/seed-seo-guides.js",
     "settle:content": "node scripts/wait-for-content-settle.js",
