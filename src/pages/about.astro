@@ -1,0 +1,48 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import siteConfig from "../data/site-config.json";
+
+const currentYear = new Date().getFullYear();
+---
+<BaseLayout
+  title={`About ${siteConfig.brand.name} | Static Horror Game Guides`}
+  description="About Horrordex, a static horror game and Backrooms guide archive for entity dossiers, platform guides, and game recommendations."
+  current="none"
+>
+  <main class="site-shell legal-shell">
+    <article class="article-body legal-page">
+      <p class="eyebrow">COMPLIANCE FILE / ABOUT</p>
+      <h1>About Horrordex</h1>
+      <p class="lead">
+        Horrordex is a static guide archive for Backrooms lore, Roblox horror, browser games, Minecraft survival,
+        and curated horror game recommendations.
+      </p>
+
+      <h2>Editorial Scope</h2>
+      <p>
+        The site is built around practical discovery pages: entity dossiers, survival guides, ranked lists, platform
+        primers, FAQ sections, and source attribution. Content is generated into static pages so it can load quickly
+        without a runtime server.
+      </p>
+
+      <h2>How Content Is Updated</h2>
+      <p>
+        Guides and data files are reviewed during the static content pipeline. The {currentYear} update cycle focuses on
+        clearer platform coverage, stable URLs, image attribution, internal links, and reader-facing explanations that
+        make each page useful beyond a keyword list.
+      </p>
+
+      <h2>Advertising Disclosure</h2>
+      <p>
+        Horrordex may display advertising through Google AdSense. Ad placements are kept separate from editorial copy
+        and are labeled through reusable static components.
+      </p>
+
+      <h2>Corrections</h2>
+      <p>
+        Game platforms and availability can change. If a link, title, or recommendation becomes outdated, corrections
+        should be made in the content files and shipped through the static deployment workflow.
+      </p>
+    </article>
+  </main>
+</BaseLayout>

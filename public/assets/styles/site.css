@@ -219,7 +219,44 @@ h1 span, .danger { color: var(--red); }
 .toc a:hover, .resource-list a { color: var(--cyan); }
 .resource-list { display: grid; gap: 10px; color: #c3ccd1; font-size: 13px; }
 .resource-list a { overflow-wrap: anywhere; }
-.footer { position: relative; z-index: 1; padding: 34px max(16px, calc((100vw - 1480px) / 2)); border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; }
+.editorial-panel {
+  display: grid;
+  gap: 10px;
+  margin-top: 22px;
+  padding: 16px;
+  border: 1px solid rgba(107,215,255,.28);
+  background: rgba(0,0,0,.22);
+}
+.editorial-panel div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 10px;
+  color: var(--cyan);
+  font-size: 12px;
+  text-transform: uppercase;
+}
+.editorial-panel p { margin: 0; font-size: 13px; }
+.reader-notes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.reader-notes article { padding: 16px; border: 1px solid var(--line); background: rgba(0,0,0,.18); }
+.reader-notes h3 { margin-top: 0; }
+.legal-shell { max-width: 980px; padding: 44px 0 64px; }
+.legal-page h1 { font-size: clamp(38px, 6vw, 82px); }
+.legal-page a { color: var(--cyan); overflow-wrap: anywhere; }
+.footer {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 12px;
+  padding: 34px max(16px, calc((100vw - 1480px) / 2));
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 12px;
+}
+.footer p { margin: 0; }
+.footer-links { display: flex; flex-wrap: wrap; gap: 12px; }
+.footer-links a { color: var(--cyan); text-decoration: none; text-transform: uppercase; font-size: 11px; }
+.footer-links a:hover { color: var(--ink); }
 .pager { display: flex; align-items: center; justify-content: center; gap: 14px; margin-top: 20px; }
 .pager .terminal-button:disabled { cursor: not-allowed; opacity: .45; }
 .empty-state { margin: 18px 0 0; color: var(--amber); font-size: 13px; text-transform: uppercase; }
@@ -242,4 +279,5 @@ h1 span, .danger { color: var(--red); }
   .section-head { align-items: start; flex-direction: column; }
   .data-row { grid-template-columns: 1fr; }
   .recommendation-card, .compare-row { grid-template-columns: 1fr; }
+  .reader-notes { grid-template-columns: 1fr; }
 }

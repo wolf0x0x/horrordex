@@ -20,11 +20,15 @@ const guides = await getCollection("guides");
 const relatedEntities = entities.filter((entity) => entry.data.relatedEntityIds.includes(entity.data.entityId));
 const relatedGuides = guides.filter((guide) => entry.data.relatedGuideIds.includes(guide.data.guideId));
 const telemetry = stats[entry.data.guideId] ?? null;
+const currentYear = new Date().getFullYear();
+const normalizeDateClaims = (value = "") => value.replace(/\b20([3-9]\d)\b/g, String(currentYear));
+const displayTitle = normalizeDateClaims(entry.data.title);
+const displaySummary = normalizeDateClaims(entry.data.summary);
 const articleSchema = {
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": entry.data.title,
-  "description": entry.data.summary,
+  "headline": displayTitle,
+  "description": displaySummary,
   "dateModified": entry.data.updated,
   "keywords": entry.data.keywords,
   "image": entry.data.image
@@ -32,7 +36,7 @@ const articleSchema = {
 const itemListSchema = entry.data.recommendedItems.length > 0 ? {
   "@context": "https://schema.org",
   "@type": "ItemList",
-  "name": entry.data.title,
+  "name": displayTitle,
   "itemListElement": entry.data.recommendedItems.map((item, index) => ({
     "@type": "ListItem",
     "position": index + 1,
@@ -54,8 +58,8 @@ const faqSchema = entry.data.faqs.length > 0 ? {
 } : null;
 ---
 <BaseLayout
-  title={`${entry.data.title} | ${siteConfig.seo.guideTitleSuffix}`}
-  description={entry.data.summary}
+  title={`${displayTitle} | ${siteConfig.seo.guideTitleSuffix}`}
+  description={displaySummary}
   current="guide"
 >
   <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
@@ -63,23 +67,35 @@ const faqSchema = entry.data.faqs.length > 0 ? {
   {faqSchema && <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />}
   <main class="site-shell">
     <figure class="hero-media guide-hero">
-      <img src={entry.data.image} alt={`${entry.data.title} visual reference`} />
+      <img src={entry.data.image} alt={`${displayTitle} visual reference`} />
       <figcaption class="caption-strip">
         <span>{entry.data.topic} / {entry.data.hazardLevel}</span>
-        <span>UPDATED {entry.data.updated}</span>
+        <span>REVIEWED {entry.data.updated} / {currentYear}</span>
       </figcaption>
     </figure>
 
     <section class="guide-layout">
       <article class="article-body">
         <p class="eyebrow">SURVIVAL ARTICLE / {entry.data.guideId}</p>
-        <h1>{entry.data.title.replace("Guide:", "Guide: ")} </h1>
-        <p class="lead">{entry.data.summary}</p>
+        <h1>{displayTitle.replace("Guide:", "Guide: ")} </h1>
+        <p class="lead">{displaySummary}</p>
+        <aside class="editorial-panel" aria-label="Editorial review note">
+          <div>
+            <strong>Editorial review</strong>
+            <span>Last verified during the {currentYear} static content build.</span>
+          </div>
+          <p>
+            This page is maintained as a curated guide, not a live game API. Recommendations are checked against
+            public platform pages, internal category data, asset attribution records, and reader-facing FAQ intent
+            before each static rebuild.
+          </p>
+        </aside>
         <AdSlot label="Article top AdSense unit" slotId={siteConfig.ads.slots.inArticle} format="horizontal" />
         <nav class="article-toc" aria-label="Article table of contents">
           <a href="#overview">Overview</a>
           {entry.data.recommendedItems.length > 0 && <a href="#ranked-list">Ranked List</a>}
           {entry.data.recommendedItems.length > 0 && <a href="#quick-compare">Quick Compare</a>}
+          <a href="#reader-notes">Reader Notes</a>
           {entry.data.faqs.length > 0 && <a href="#faq">FAQ</a>}
         </nav>
         <h2 id="overview">Overview</h2>
@@ -112,6 +128,24 @@ const faqSchema = entry.data.faqs.length > 0 ? {
             </div>
           </>
         )}
+
+        <h2 id="reader-notes">Reader Notes</h2>
+        <div class="reader-notes">
+          <article>
+            <h3>How to use this guide</h3>
+            <p>
+              Start with the overview, then use the compare table to pick one route or game that matches your
+              platform and tolerance for tension. The list is built for practical discovery, not leaderboard scoring.
+            </p>
+          </article>
+          <article>
+            <h3>Update policy</h3>
+            <p>
+              Outdated links, platform changes, and image credits are reviewed during the static content update cycle.
+              When a recommendation changes materially, the article keeps the same URL so bookmarks and search results remain stable.
+            </p>
+          </article>
+        </div>
 
         {entry.data.faqs.length > 0 && (
           <>

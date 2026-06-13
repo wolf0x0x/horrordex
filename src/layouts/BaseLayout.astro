@@ -5,7 +5,7 @@ import siteConfig from "../data/site-config.json";
 interface Props {
   title: string;
   description: string;
-  current?: "matrix" | "entity" | "guide";
+  current?: "matrix" | "entity" | "guide" | "none";
 }
 
 const { title, description, current = "matrix" } = Astro.props;
@@ -60,7 +60,13 @@ const primaryLinks = siteConfig.navigation.primaryLinks ?? [];
     </header>
     <slot />
     <footer class="footer">
-      {siteConfig.brand.footer}
+      <p>{siteConfig.brand.footer}</p>
+      <nav class="footer-links" aria-label="Footer navigation">
+        <a href="/about/">About</a>
+        <a href="/privacy/">Privacy Policy</a>
+        <a href="/ads.txt">Ads.txt</a>
+        <a href="https://github.com/wolf0x0x/horrordex" target="_blank" rel="nofollow noopener">Source Code</a>
+      </nav>
     </footer>
   </body>
 </html>

@@ -1,0 +1,56 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import siteConfig from "../data/site-config.json";
+
+const currentYear = new Date().getFullYear();
+---
+<BaseLayout
+  title={`Privacy Policy | ${siteConfig.brand.name}`}
+  description="Privacy policy for Horrordex, including advertising, analytics, cookies, and third-party links."
+  current="none"
+>
+  <main class="site-shell legal-shell">
+    <article class="article-body legal-page">
+      <p class="eyebrow">COMPLIANCE FILE / PRIVACY</p>
+      <h1>Privacy Policy</h1>
+      <p class="lead">Last updated: {currentYear}</p>
+
+      <h2>Advertising</h2>
+      <p>
+        Horrordex uses Google AdSense to serve advertisements. Google and its partners may use cookies or similar
+        technologies to serve ads based on a user's prior visits to this website or other websites.
+      </p>
+      <p>
+        Users may opt out of personalized advertising through
+        <a href="https://www.google.com/settings/ads" target="_blank" rel="nofollow noopener">Google Ads Settings</a>.
+        More information about how Google uses data from partner sites is available at
+        <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="nofollow noopener">Google's policy page</a>.
+      </p>
+
+      <h2>Analytics</h2>
+      <p>
+        This site uses Google Analytics to understand aggregate traffic patterns, page performance, and content usage.
+        Analytics data helps prioritize content updates and improve the static browsing experience.
+      </p>
+
+      <h2>Cookies And Log Data</h2>
+      <p>
+        Like most websites, Horrordex may receive non-personal log data such as browser type, referring pages,
+        approximate timestamps, device information, and page interactions. Advertising and analytics providers may also
+        set cookies according to their own policies.
+      </p>
+
+      <h2>Third-Party Links</h2>
+      <p>
+        Articles may link to external game stores, platform pages, public asset sources, or documentation. Horrordex is
+        not responsible for the privacy practices or content of third-party websites.
+      </p>
+
+      <h2>Contact</h2>
+      <p>
+        For privacy or content correction requests, use the project repository linked in the footer so changes can be
+        reviewed and tracked transparently.
+      </p>
+    </article>
+  </main>
+</BaseLayout>
