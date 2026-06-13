@@ -41,6 +41,24 @@
     "caption": "CAM_09 / corridor drift"
   },
   "navigation": {
+    "primaryLinks": [
+      {
+        "label": "Backrooms Archive",
+        "href": "/categories/the-backrooms/"
+      },
+      {
+        "label": "Game Rankings",
+        "href": "/categories/horror-games/"
+      },
+      {
+        "label": "Platform Guides",
+        "href": "/categories/roblox/"
+      },
+      {
+        "label": "Entity Dossiers",
+        "href": "/entities/seek/"
+      }
+    ],
     "entityId": "REF_0992",
     "guideId": "REF_LEVEL_0"
   }

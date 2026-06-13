@@ -1,5 +1,5 @@
 ---
-title: "Roblox 2026 新手完全指南"
+title: "Roblox Beginner Guide 2026: Account, Safety, and First Games"
 guideId: "GUIDE_ROBLOX_BEGINNER_2026"
 topic: "Roblox"
 articleType: "platform-guide"
@@ -10,8 +10,8 @@ updated: "2026-06-13"
 featured: true
 keywords:
   - "roblox beginner guide 2026"
-  - "roblox 怎么玩"
-  - "roblox 新手指南"
+  - "how to play roblox"
+  - "roblox safety settings"
 relatedEntityIds: []
 relatedGuideIds:
   - "GUIDE_BACKROOMS_FREE_HORROR"
@@ -25,7 +25,7 @@ faqs:
   - question: "Is everything here free?"
     answer: "Most entries are free-to-start or have free access paths, but optional purchases vary by platform."
 assetCredits:
-  - title: "Roblox 2026 新手完全指南 generated cover"
+  - title: "Roblox Beginner Guide 2026: Account, Safety, and First Games generated cover"
     creator: "Codex local static asset pipeline"
     license: "Site-owned generated image"
     source: "scripts/seed-seo-guides.js"

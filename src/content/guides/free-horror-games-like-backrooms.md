@@ -1,5 +1,5 @@
 ---
-title: "20 个像 Backrooms 一样恐怖的免费游戏"
+title: "20 Free Horror Games Like the Backrooms"
 guideId: "GUIDE_BACKROOMS_FREE_HORROR"
 topic: "Free Horror Games"
 articleType: "list"
@@ -10,7 +10,7 @@ updated: "2026-06-13"
 featured: true
 keywords:
   - "free horror games like backrooms"
-  - "免费恐怖游戏"
+  - "games similar to backrooms"
   - "games like backrooms free"
 relatedEntityIds: []
 relatedGuideIds:
@@ -166,7 +166,7 @@ faqs:
   - question: "Do I need a gaming PC?"
     answer: "No. Many recommendations run in a browser, on Roblox, or on low-spec PCs."
 assetCredits:
-  - title: "20 个像 Backrooms 一样恐怖的免费游戏 generated cover"
+  - title: "20 Free Horror Games Like the Backrooms generated cover"
     creator: "Codex local static asset pipeline"
     license: "Site-owned generated image"
     source: "scripts/seed-seo-guides.js"

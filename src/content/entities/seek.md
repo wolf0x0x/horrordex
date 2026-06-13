@@ -1,5 +1,5 @@
 ---
-title: "SEEK // 寻求者"
+title: "SEEK // Pursuer"
 entityId: "REF_0992"
 gameSource: "Roblox DOORS"
 hazardLevel: "Class 9: Fatal Chase"

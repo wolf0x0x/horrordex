@@ -1,5 +1,5 @@
 ---
-title: "Backrooms 完全解析：从都市传说到游戏世界"
+title: "Backrooms Explained: From Urban Legend to Playable Horror"
 guideId: "GUIDE_BACKROOMS_COMPLETE"
 topic: "The Backrooms"
 articleType: "deep-dive"
@@ -9,9 +9,9 @@ image: "/assets/img/guides/backrooms-complete-guide.webp"
 updated: "2026-06-13"
 featured: false
 keywords:
-  - "backrooms 是什么"
-  - "backrooms 游戏"
-  - "后室起源"
+  - "what are the backrooms"
+  - "backrooms game"
+  - "backrooms origin"
   - "liminal space horror"
 relatedEntityIds: []
 relatedGuideIds:
@@ -20,7 +20,7 @@ relatedGuideIds:
 recommendedItems: []
 faqs: []
 assetCredits:
-  - title: "Backrooms 完全解析：从都市传说到游戏世界 generated cover"
+  - title: "Backrooms Explained: From Urban Legend to Playable Horror generated cover"
     creator: "Codex local static asset pipeline"
     license: "Site-owned generated image"
     source: "scripts/seed-seo-guides.js"

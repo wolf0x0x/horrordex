@@ -17,7 +17,7 @@
     {
       "slug": "seek",
       "frontmatter": {
-        "title": "SEEK // 寻求者",
+        "title": "SEEK // Pursuer",
         "entityId": "REF_0992",
         "gameSource": "Roblox DOORS",
         "hazardLevel": "Class 9: Fatal Chase",
@@ -44,7 +44,7 @@
     {
       "slug": "backrooms-hound",
       "frontmatter": {
-        "title": "HOUND // 后室猎犬",
+        "title": "HOUND // Backrooms Hound",
         "entityId": "REF_BKR_HOUND",
         "gameSource": "The Backrooms",
         "hazardLevel": "Class 5: Hostile",

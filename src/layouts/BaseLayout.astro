@@ -9,12 +9,9 @@ interface Props {
 }
 
 const { title, description, current = "matrix" } = Astro.props;
-const [entities, guides] = await Promise.all([
-  getCollection("entities"),
-  getCollection("guides")
-]);
-const navEntity = entities.find((entry) => entry.data.entityId === siteConfig.navigation.entityId) ?? entities.find((entry) => entry.data.featured) ?? entities[0];
+const guides = await getCollection("guides");
 const navGuide = guides.find((entry) => entry.data.guideId === siteConfig.navigation.guideId) ?? guides.find((entry) => entry.data.featured) ?? guides[0];
+const primaryLinks = siteConfig.navigation.primaryLinks ?? [];
 ---
 <!doctype html>
 <html lang="en">
@@ -55,7 +52,9 @@ const navGuide = guides.find((entry) => entry.data.guideId === siteConfig.naviga
       </a>
       <nav class="nav" aria-label="Primary navigation">
         <a href="/" aria-current={current === "matrix" ? "page" : undefined}>Matrix</a>
-        {navEntity && <a href={`/entities/${navEntity.slug}/`} aria-current={current === "entity" ? "page" : undefined}>Dossier: {navEntity.data.title.split("//")[0].trim()}</a>}
+        {primaryLinks.map((link) => (
+          <a href={link.href}>{link.label}</a>
+        ))}
         {navGuide && <a href={`/guides/${navGuide.slug}/`} aria-current={current === "guide" ? "page" : undefined}>{navGuide.data.title}</a>}
       </nav>
     </header>

@@ -1,5 +1,5 @@
 ---
-title: "2026 年最值得玩的 15 款恐怖游戏推荐"
+title: "15 Best Horror Games to Play in 2026"
 guideId: "GUIDE_BEST_HORROR_2026"
 topic: "Horror Games"
 articleType: "list"
@@ -10,7 +10,7 @@ updated: "2026-06-13"
 featured: false
 keywords:
   - "best horror games 2026"
-  - "恐怖游戏推荐"
+  - "horror game recommendations"
   - "top horror games"
 relatedEntityIds: []
 relatedGuideIds:
@@ -130,7 +130,7 @@ faqs:
   - question: "Do I need a gaming PC?"
     answer: "No. Many recommendations run in a browser, on Roblox, or on low-spec PCs."
 assetCredits:
-  - title: "2026 年最值得玩的 15 款恐怖游戏推荐 generated cover"
+  - title: "15 Best Horror Games to Play in 2026 generated cover"
     creator: "Codex local static asset pipeline"
     license: "Site-owned generated image"
     source: "scripts/seed-seo-guides.js"

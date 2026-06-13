@@ -1,5 +1,5 @@
 ---
-title: "HOUND // 后室猎犬"
+title: "HOUND // Backrooms Hound"
 entityId: "REF_BKR_HOUND"
 gameSource: "The Backrooms"
 hazardLevel: "Class 5: Hostile"

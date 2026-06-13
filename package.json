@@ -5,12 +5,14 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev",
+    "clean:astro": "node scripts/clean-astro-cache.js",
     "icons": "node scripts/generate-icons.js",
     "seed:guides": "node scripts/seed-seo-guides.js",
+    "settle:content": "node scripts/wait-for-content-settle.js",
     "sync:content": "node scripts/sync-static-content.js",
     "sync:roblox": "node scripts/fetch-roblox-status.js",
     "build": "astro build",
-    "build:sync": "npm run icons && npm run sync:content && npm run seed:guides && npm run sync:roblox && astro build",
+    "build:sync": "npm run icons && npm run sync:content && npm run seed:guides && npm run sync:roblox && npm run clean:astro && npm run settle:content && astro build",
     "preview": "astro preview"
   },
   "dependencies": {

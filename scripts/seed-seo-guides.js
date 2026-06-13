@@ -32,13 +32,13 @@ const articles = [
   {
     slug: "backrooms-complete-guide",
     theme: "backrooms",
-    title: "Backrooms 完全解析：从都市传说到游戏世界",
+    title: "Backrooms Explained: From Urban Legend to Playable Horror",
     guideId: "GUIDE_BACKROOMS_COMPLETE",
     topic: "The Backrooms",
     articleType: "deep-dive",
     hazardLevel: "Class 2: Lore",
     summary: "A complete Backrooms guide covering the creepypasta origin, liminal-space horror, game adaptations, common levels, and why the setting became a modern horror language.",
-    keywords: ["backrooms 是什么", "backrooms 游戏", "后室起源", "liminal space horror"],
+    keywords: ["what are the backrooms", "backrooms game", "backrooms origin", "liminal space horror"],
     relatedGuideIds: ["GUIDE_BACKROOMS_FREE_HORROR", "REF_LEVEL_0"],
     body: `The Backrooms started as a simple image-era nightmare: yellow rooms, buzzing lights, damp carpet, and the feeling that reality had loaded the wrong floor. Its power comes from familiarity. The space is not a castle or alien planet; it is an office hallway that should have been harmless.
 
@@ -60,13 +60,13 @@ For Horrordex, Backrooms content becomes the backbone for entity dossiers, survi
   {
     slug: "free-horror-games-like-backrooms",
     theme: "horror",
-    title: "20 个像 Backrooms 一样恐怖的免费游戏",
+    title: "20 Free Horror Games Like the Backrooms",
     guideId: "GUIDE_BACKROOMS_FREE_HORROR",
     topic: "Free Horror Games",
     articleType: "list",
     hazardLevel: "Class 4: High Tension",
     summary: "A ranked guide to free horror games like Backrooms, focused on liminal spaces, maze anxiety, co-op fear, and low-cost browser or platform play.",
-    keywords: ["free horror games like backrooms", "免费恐怖游戏", "games like backrooms free"],
+    keywords: ["free horror games like backrooms", "games similar to backrooms", "games like backrooms free"],
     relatedGuideIds: ["GUIDE_BACKROOMS_COMPLETE", "GUIDE_BEST_HORROR_2026", "GUIDE_ROBLOX_BEGINNER_2026"],
     faqs: commonFaqs.freeHorror,
     items: [
@@ -98,13 +98,13 @@ Use this list as a starting route. Pick Roblox for quick multiplayer, Itch.io fo
   {
     slug: "minecraft-survival-guide-2026",
     theme: "minecraft",
-    title: "Minecraft 2026 生存模式完全指南",
+    title: "Minecraft Survival Guide 2026: Complete Beginner Route",
     guideId: "GUIDE_MINECRAFT_SURVIVAL_2026",
     topic: "Minecraft",
     articleType: "platform-guide",
     hazardLevel: "Class 1: Beginner",
     summary: "A 2026 Minecraft survival guide for new and returning players, covering first-day priorities, food, shelter, mining, villages, Nether prep, and long-term goals.",
-    keywords: ["minecraft survival guide 2026", "mc 生存攻略", "minecraft beginner survival"],
+    keywords: ["minecraft survival guide 2026", "minecraft beginner guide", "minecraft beginner survival"],
     relatedGuideIds: ["GUIDE_SANDBOX_GAMES_2026", "GUIDE_CASUAL_GAMES_2026"],
     faqs: commonFaqs.platform,
     body: `Minecraft survival is easiest when you stop treating the first day as a race. The goal is not diamond gear. The goal is light, food, a bed, and a repeatable route back home.
@@ -124,13 +124,13 @@ Do not enter the Nether without blocks, food, spare tools, and a clear return ma
   {
     slug: "crazy-games-best-free-games",
     theme: "casual",
-    title: "Crazy Games 最佳免费游戏排行",
+    title: "Best Free Crazy Games to Play in 2026",
     guideId: "GUIDE_CRAZY_GAMES_BEST_FREE",
     topic: "Crazy Games",
     articleType: "list",
     hazardLevel: "Class 0: Browser Safe",
     summary: "A practical ranking of the best free games on Crazy Games for quick play, school-break sessions, casual competition, and no-download discovery.",
-    keywords: ["crazy games best free games", "在线免费游戏", "browser games ranking"],
+    keywords: ["crazy games best free games", "free online games", "browser games ranking"],
     relatedGuideIds: ["GUIDE_CASUAL_GAMES_2026", "GUIDE_BEST_HORROR_2026"],
     faqs: commonFaqs.platform,
     items: [
@@ -138,7 +138,12 @@ Do not enter the Nether without blocks, food, spare tools, and a clear return ma
       ["BuildNow GG", "Browser", "Free", "Build shooter", "A lightweight building-and-aiming loop for players who like creative combat.", "Best for practicing reaction and structure placement.", "https://www.crazygames.com/"],
       ["Drift Hunters", "Browser", "Free", "Driving", "A tuning and drifting game with satisfying progression and low friction.", "Good for players who want mechanical flow without pressure.", "https://www.crazygames.com/"],
       ["Moto X3M", "Browser", "Free", "Stunt racing", "Short tracks, restarts, and physics mistakes make it easy to keep playing.", "Great for casual challenge loops.", "https://www.crazygames.com/"],
-      ["Horror Tale-style browser games", "Browser", "Free", "Light horror", "Browser horror works best when sessions are short and puzzles are readable.", "A safer entry point before heavier horror games.", "https://www.crazygames.com/t/horror"]
+      ["Horror Tale-style browser games", "Browser", "Free", "Light horror", "Browser horror works best when sessions are short and puzzles are readable.", "A safer entry point before heavier horror games.", "https://www.crazygames.com/t/horror"],
+      ["Basket Random", "Browser", "Free", "Physics sports", "Short matches and chaotic physics make it easy to replay without a long setup.", "Best for fast two-player sessions.", "https://www.crazygames.com/"],
+      ["Bloxd.io", "Browser", "Free", "Voxel multiplayer", "A block-based browser world with parkour, building, and multiplayer modes.", "Good for Minecraft-style play in a tab.", "https://www.crazygames.com/"],
+      ["Smash Karts", "Browser", "Free", "Kart combat", "Arena driving and power-ups create quick competitive rounds.", "Best for arcade multiplayer without downloads.", "https://www.crazygames.com/"],
+      ["Word Wipe", "Browser", "Free", "Word puzzle", "A simple word-clearing loop that works well for quick breaks.", "Good for low-pressure puzzle sessions.", "https://www.crazygames.com/"],
+      ["Ragdoll Archers", "Browser", "Free", "Physics action", "Loose physics and one-more-round combat make it a strong casual action pick.", "Best for quick skill-based browser play.", "https://www.crazygames.com/"]
     ],
     body: `Crazy Games is strongest when you want zero-install discovery. The best choices load quickly, explain themselves in seconds, and still have enough depth to keep a tab open longer than planned.
 
@@ -147,13 +152,13 @@ This ranking favors games that are easy to start, readable on a laptop, and frie
   {
     slug: "roblox-beginner-guide-2026",
     theme: "roblox",
-    title: "Roblox 2026 新手完全指南",
+    title: "Roblox Beginner Guide 2026: Account, Safety, and First Games",
     guideId: "GUIDE_ROBLOX_BEGINNER_2026",
     topic: "Roblox",
     articleType: "platform-guide",
     hazardLevel: "Class 1: Beginner",
     summary: "A beginner-friendly Roblox 2026 guide covering account setup, safety, discovery, Robux basics, private servers, and how to find good horror experiences.",
-    keywords: ["roblox beginner guide 2026", "roblox 怎么玩", "roblox 新手指南"],
+    keywords: ["roblox beginner guide 2026", "how to play roblox", "roblox safety settings"],
     relatedGuideIds: ["GUIDE_BACKROOMS_FREE_HORROR", "GUIDE_BEST_HORROR_2026"],
     faqs: commonFaqs.platform,
     body: `Roblox is less a single game than a platform of player-made experiences. New players should learn account safety, privacy controls, and discovery habits before worrying about Robux or rare cosmetics.
@@ -173,13 +178,13 @@ Robux is optional for most discovery. Treat paid items as cosmetics or convenien
   {
     slug: "best-horror-games-2026",
     theme: "horror",
-    title: "2026 年最值得玩的 15 款恐怖游戏推荐",
+    title: "15 Best Horror Games to Play in 2026",
     guideId: "GUIDE_BEST_HORROR_2026",
     topic: "Horror Games",
     articleType: "list",
     hazardLevel: "Class 5: Night Mode",
     summary: "A 2026 horror game recommendation list spanning survival horror, co-op scares, indie dread, Roblox horror, and Backrooms-like liminal fear.",
-    keywords: ["best horror games 2026", "恐怖游戏推荐", "top horror games"],
+    keywords: ["best horror games 2026", "horror game recommendations", "top horror games"],
     relatedGuideIds: ["GUIDE_BACKROOMS_FREE_HORROR", "GUIDE_BACKROOMS_COMPLETE"],
     faqs: commonFaqs.freeHorror,
     items: [
@@ -206,13 +211,13 @@ Use this list by mood: Roblox for quick social horror, PC indie games for author
   {
     slug: "best-sandbox-games-2026",
     theme: "sandbox",
-    title: "2026 年最佳沙盒建造游戏推荐",
+    title: "Best Sandbox Building Games to Play in 2026",
     guideId: "GUIDE_SANDBOX_GAMES_2026",
     topic: "Sandbox Games",
     articleType: "list",
     hazardLevel: "Class 0: Creative",
     summary: "A 2026 sandbox game guide for players who enjoy building, survival crafting, modding, multiplayer worlds, and creative problem solving.",
-    keywords: ["best sandbox games 2026", "沙盒游戏推荐", "building games"],
+    keywords: ["best sandbox games 2026", "sandbox game recommendations", "building games"],
     relatedGuideIds: ["GUIDE_MINECRAFT_SURVIVAL_2026", "GUIDE_CASUAL_GAMES_2026"],
     faqs: commonFaqs.platform,
     items: [
@@ -220,7 +225,12 @@ Use this list by mood: Roblox for quick social horror, PC indie games for author
       ["Roblox Studio Experiences", "Roblox", "Free", "User-created sandbox", "Roblox blends creation, social play, and custom game modes.", "Best for discovering player-made worlds.", "https://www.roblox.com/create"],
       ["Terraria", "PC/Console/Mobile", "Paid", "2D adventure sandbox", "Deep item progression and boss discovery make it more combat-driven than Minecraft.", "Best for players who like goals with building.", "https://store.steampowered.com/"],
       ["LEGO Fortnite-style survival builders", "Multi-platform", "Free/Paid", "Co-op building", "Accessible crafting and friendly visuals make survival easier to share.", "Best family-friendly builder lane.", "https://www.epicgames.com/"],
-      ["Garry's Mod", "PC", "Paid", "Physics sandbox", "A mod-heavy playground for experiments, roleplay, and community modes.", "Best for players who like messy creativity.", "https://store.steampowered.com/"]
+      ["Garry's Mod", "PC", "Paid", "Physics sandbox", "A mod-heavy playground for experiments, roleplay, and community modes.", "Best for players who like messy creativity.", "https://store.steampowered.com/"],
+      ["Valheim", "PC/Console", "Paid", "Survival crafting", "Biome progression and co-op building make each base feel earned.", "Best for survival players who want a long campaign.", "https://www.valheimgame.com/"],
+      ["No Man's Sky", "PC/Console", "Paid", "Space sandbox", "Exploration, base building, ships, and planet discovery create a huge creative loop.", "Best for open-ended sci-fi exploration.", "https://www.nomanssky.com/"],
+      ["Scrap Mechanic", "PC", "Paid", "Engineering sandbox", "Vehicle building and mechanical systems reward experimentation.", "Best for players who like machines and physics.", "https://store.steampowered.com/"],
+      ["Core Keeper", "PC/Console", "Paid", "Underground crafting", "Mining, farming, bosses, and base building combine into a cozy survival loop.", "Best for small-group sandbox progression.", "https://store.steampowered.com/"],
+      ["Satisfactory", "PC", "Paid", "Automation sandbox", "Factory planning turns terrain into a logistics puzzle.", "Best for players who love building efficient systems.", "https://www.satisfactorygame.com/"]
     ],
     body: `Sandbox games are strongest when they let players set their own goals. Some people build castles, some automate farms, and some just want a quiet world where the next project is always visible.
 
@@ -229,13 +239,13 @@ The best 2026 sandbox picks balance freedom with enough structure to prevent bor
   {
     slug: "best-casual-games-2026",
     theme: "casual",
-    title: "2026 年最佳休闲解压游戏推荐",
+    title: "Best Casual Games to Relax With in 2026",
     guideId: "GUIDE_CASUAL_GAMES_2026",
     topic: "Casual Games",
     articleType: "list",
     hazardLevel: "Class 0: Relaxed",
     summary: "A 2026 casual game list for players who want low-pressure, quick-start, relaxing games across browser, mobile, sandbox, puzzle, and cozy categories.",
-    keywords: ["best casual games 2026", "休闲游戏推荐", "relaxing games"],
+    keywords: ["best casual games 2026", "casual game recommendations", "relaxing games"],
     relatedGuideIds: ["GUIDE_CRAZY_GAMES_BEST_FREE", "GUIDE_SANDBOX_GAMES_2026"],
     faqs: commonFaqs.platform,
     items: [
@@ -243,7 +253,12 @@ The best 2026 sandbox picks balance freedom with enough structure to prevent bor
       ["Unpacking", "PC/Console", "Paid", "Cozy puzzle", "A quiet object-placement game that tells story through rooms.", "Best for short reflective sessions.", "https://store.steampowered.com/"],
       ["Browser puzzle games", "Browser", "Free", "Quick puzzle", "Daily and browser puzzles are easy to start and stop without losing momentum.", "Best for breaks between work.", "https://www.crazygames.com/t/puzzle"],
       ["Minecraft Creative Mode", "PC/Console/Mobile", "Paid", "Creative sandbox", "Creative mode removes survival pressure and turns the game into a building notebook.", "Best relaxing sandbox mode.", "https://www.minecraft.net/"],
-      ["Roblox casual tycoon games", "Roblox", "Free", "Incremental casual", "Tycoon and simulator experiences give fast progression with simple goals.", "Best for casual multiplayer downtime.", "https://www.roblox.com/discover"]
+      ["Roblox casual tycoon games", "Roblox", "Free", "Incremental casual", "Tycoon and simulator experiences give fast progression with simple goals.", "Best for casual multiplayer downtime.", "https://www.roblox.com/discover"],
+      ["PowerWash Simulator", "PC/Console", "Paid", "Cleaning sim", "Clear before-and-after progress makes it deeply relaxing.", "Best for players who want tactile cleanup loops.", "https://store.steampowered.com/"],
+      ["A Short Hike", "PC/Console", "Paid", "Exploration", "A compact island adventure with gentle goals and warm pacing.", "Best for a calm one-evening game.", "https://store.steampowered.com/"],
+      ["Dorfromantik", "PC/Console", "Paid", "Tile puzzle", "Landscape tiles create a quiet strategy puzzle with no rush.", "Best for meditative planning.", "https://www.dorfromantik.com/"],
+      ["Townscaper", "PC/Console/Mobile", "Paid", "Toy builder", "Clicking turns colors and blocks into charming coastal towns.", "Best for effortless creative play.", "https://store.steampowered.com/"],
+      ["Cats Organized Neatly", "PC", "Paid", "Cozy puzzle", "A soft spatial puzzle about fitting cats into neat grids.", "Best for gentle puzzle breaks.", "https://store.steampowered.com/"]
     ],
     body: `Casual games are not shallow by default. The best ones reduce friction: quick starts, clear goals, soft failure, and progress that does not punish you for taking a break.
 

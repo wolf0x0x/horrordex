@@ -1,5 +1,5 @@
 ---
-title: "Minecraft 2026 生存模式完全指南"
+title: "Minecraft Survival Guide 2026: Complete Beginner Route"
 guideId: "GUIDE_MINECRAFT_SURVIVAL_2026"
 topic: "Minecraft"
 articleType: "platform-guide"
@@ -10,7 +10,7 @@ updated: "2026-06-13"
 featured: false
 keywords:
   - "minecraft survival guide 2026"
-  - "mc 生存攻略"
+  - "minecraft beginner guide"
   - "minecraft beginner survival"
 relatedEntityIds: []
 relatedGuideIds:
@@ -25,7 +25,7 @@ faqs:
   - question: "Is everything here free?"
     answer: "Most entries are free-to-start or have free access paths, but optional purchases vary by platform."
 assetCredits:
-  - title: "Minecraft 2026 生存模式完全指南 generated cover"
+  - title: "Minecraft Survival Guide 2026: Complete Beginner Route generated cover"
     creator: "Codex local static asset pipeline"
     license: "Site-owned generated image"
     source: "scripts/seed-seo-guides.js"
