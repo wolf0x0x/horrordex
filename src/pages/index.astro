@@ -1,0 +1,140 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import EntityCard from "../components/EntityCard.astro";
+import AdSlot from "../components/AdSlot.astro";
+import stats from "../data/roblox-stats.json";
+import siteConfig from "../data/site-config.json";
+
+const entities = await getCollection("entities");
+const guides = await getCollection("guides");
+const totalPopulation = Object.values(stats).reduce((sum, item) => sum + Number(item.live_population || 0), 0);
+const featuredEntity = entities.find((entry) => entry.data.entityId === siteConfig.hero.featuredEntityId) ?? entities.find((entry) => entry.data.featured) ?? entities[0];
+const primaryGuide = guides.find((entry) => entry.data.guideId === siteConfig.hero.primaryGuideId) ?? guides.find((entry) => entry.data.featured) ?? guides[0];
+const sortedEntities = [...entities].sort((a, b) => Number(b.data.featured) - Number(a.data.featured));
+const origins = [...new Set([
+  ...entities.map((entry) => entry.data.gameSource),
+  ...guides.map((entry) => entry.data.topic)
+])];
+const severities = [
+  { label: "Safe", value: "green" },
+  { label: "Hostile", value: "amber" },
+  { label: "Fatal", value: "red" }
+];
+---
+<BaseLayout
+  title="Horrordex Entity Matrix | Roblox Horror & Backrooms Database"
+  description="Static MVP for Horrordex: Roblox horror entity dossiers, Backrooms survival guides, build-time telemetry, and edge-ready SEO pages."
+  current="matrix"
+>
+  <main class="site-shell">
+    <section class="hero" aria-labelledby="page-title">
+      <div class="hero-copy">
+        <p class="eyebrow">SYS_ACTIVE / static bake {new Date().toISOString().slice(0, 10)}</p>
+        <h1 id="page-title">Entity <span>Matrix</span></h1>
+        <p class="lead">
+          A pure static horror database for Roblox anomalies, Backrooms entities, and longform escape guides. Content lives in Git, telemetry is baked into JSON, and Cloudflare Pages serves the finished HTML from the edge.
+        </p>
+        <div class="hero-actions">
+          <a class="terminal-button" href="#matrix">Open matrix</a>
+          {primaryGuide && <a class="terminal-button" href={`/guides/${primaryGuide.slug}/`}>Read featured guide</a>}
+        </div>
+      </div>
+      <figure class="hero-media">
+        <img src={siteConfig.hero.image ?? featuredEntity?.data.image} alt="Horrordex featured dossier visual" />
+        <figcaption class="caption-strip">
+          <span>{siteConfig.hero.caption ?? featuredEntity?.data.route ?? "featured dossier"}</span>
+          <span>LIVE {totalPopulation.toLocaleString("en-US")}</span>
+        </figcaption>
+      </figure>
+    </section>
+
+    <section class="stats-grid" aria-label="MVP telemetry">
+      <div class="stat"><strong>{entities.length}</strong><span>Entity records</span></div>
+      <div class="stat"><strong>{guides.length}</strong><span>Survival guides</span></div>
+      <div class="stat"><strong>{totalPopulation.toLocaleString("en-US")}</strong><span>Players baked in</span></div>
+      <div class="stat"><strong>0</strong><span>Runtime servers</span></div>
+    </section>
+
+    <div class="matrix-layout" id="matrix">
+      <aside class="panel" aria-label="Matrix controls">
+        <div class="panel-title"><span>Input parameters</span><span>v0.1</span></div>
+        <input class="input" type="search" placeholder="LOCATE_ENTITY..." aria-label="Search records" data-record-search />
+        <div class="filter-stack">
+          {origins.map((origin) => (
+            <label class="check-row"><input type="checkbox" value={origin} checked data-origin-filter /> {origin}</label>
+          ))}
+        </div>
+        <div class="badge-row">
+          {severities.map((severity) => (
+            <label class:list={["risk-tag", severity.value]}><input type="checkbox" value={severity.value} checked data-severity-filter /> {severity.label}</label>
+          ))}
+        </div>
+        <AdSlot label="AdSense native banner 336x280" />
+      </aside>
+
+      <section aria-labelledby="matrix-title">
+        <div class="section-head">
+          <h2 id="matrix-title">Classified Records</h2>
+          <p class="micro">source: src/content + src/data/roblox-stats.json</p>
+        </div>
+        <div class="entity-grid">
+          {sortedEntities.map((entry) => (
+            <EntityCard
+              title={entry.data.title}
+              href={`/entities/${entry.slug}/`}
+              recordId={entry.data.entityId}
+              image={entry.data.image}
+              summary={entry.data.summary}
+              hazardLevel={entry.data.hazardLevel}
+              source={entry.data.gameSource}
+              visualEffect={entry.data.visualEffect}
+              population={stats[entry.data.entityId]?.live_population}
+              featured={entry.data.featured}
+            />
+          ))}
+          {guides.map((entry) => (
+            <EntityCard
+              title={entry.data.title}
+              href={`/guides/${entry.slug}/`}
+              recordId={entry.data.guideId}
+              image={entry.data.image}
+              summary={entry.data.summary}
+              hazardLevel={entry.data.hazardLevel}
+              source={entry.data.topic}
+              population={stats[entry.data.guideId]?.live_population}
+            />
+          ))}
+        </div>
+      </section>
+    </div>
+  </main>
+  <script is:inline>
+    const search = document.querySelector("[data-record-search]");
+    const originFilters = Array.from(document.querySelectorAll("[data-origin-filter]"));
+    const severityFilters = Array.from(document.querySelectorAll("[data-severity-filter]"));
+    const cards = Array.from(document.querySelectorAll("[data-record-card]"));
+
+    function selectedValues(inputs) {
+      return new Set(inputs.filter((input) => input.checked).map((input) => input.value));
+    }
+
+    function applyFilters() {
+      const query = (search?.value ?? "").trim().toLowerCase();
+      const origins = selectedValues(originFilters);
+      const severities = selectedValues(severityFilters);
+
+      for (const card of cards) {
+        const matchesQuery = !query || card.dataset.recordTitle.includes(query);
+        const matchesOrigin = origins.has(card.dataset.recordOrigin);
+        const matchesSeverity = severities.has(card.dataset.recordSeverity);
+        card.hidden = !(matchesQuery && matchesOrigin && matchesSeverity);
+      }
+    }
+
+    search?.addEventListener("input", applyFilters);
+    for (const input of [...originFilters, ...severityFilters]) {
+      input.addEventListener("change", applyFilters);
+    }
+  </script>
+</BaseLayout>

@@ -1,0 +1,79 @@
+---
+import { getCollection, render } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import AdSlot from "../../components/AdSlot.astro";
+import stats from "../../data/roblox-stats.json";
+
+export async function getStaticPaths() {
+  const entities = await getCollection("entities");
+  return entities.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry }
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const guides = await getCollection("guides");
+const relatedGuides = guides.filter((guide) => entry.data.relatedGuideIds.includes(guide.data.guideId));
+const telemetry = stats[entry.data.entityId] ?? null;
+---
+<BaseLayout
+  title={`${entry.data.title} | Horrordex Entity Dossier`}
+  description={entry.data.summary}
+  current="entity"
+>
+  <main class="site-shell">
+    <section class="dossier-head" aria-labelledby="page-title">
+      <div class="dossier-title">
+        <p class="eyebrow">ANOMALY_REF / {entry.data.entityId} / {telemetry?.last_mutation_sync ?? "offline"}</p>
+        <h1 id="page-title">Dossier: <span>{entry.data.title.split("//")[0].trim()}</span></h1>
+        <p class="lead">{entry.data.summary}</p>
+      </div>
+      <figure class="image-panel">
+        <img src={entry.data.image} alt={`${entry.data.title} dossier visual`} />
+        {entry.data.visualEffect === "seek-apparition" && <div class="seek-apparition" aria-hidden="true"><div class="seek-body"></div></div>}
+        <figcaption class="caption-strip">
+          <span>{entry.data.route ?? entry.data.gameSource}</span>
+          <span>LIVE <span id={`live-${entry.data.entityId}`}>{telemetry?.live_population?.toLocaleString("en-US") ?? "offline"}</span></span>
+        </figcaption>
+      </figure>
+    </section>
+
+    <section class="dossier-layout">
+      <article class="article-body">
+        <h2>Overview</h2>
+        <Content />
+        <h2>MVP Static Hooks</h2>
+        <p>
+          This dossier is generated from a content collection entry and a JSON telemetry record. No browser request is needed at runtime, which keeps the page fast, cacheable, and safe for Cloudflare Pages hosting.
+        </p>
+        {entry.data.assetCredits.length > 0 && (
+          <>
+            <h2>Downloaded Assets & Attribution</h2>
+            <div class="resource-list">
+              {entry.data.assetCredits.map((asset) => (
+                <p><strong>{asset.title}</strong> by {asset.creator}, licensed {asset.license}. Source: <a href={asset.source}>{asset.source}</a></p>
+              ))}
+            </div>
+          </>
+        )}
+      </article>
+
+      <aside class="toc" aria-label="Dossier metadata">
+        <div class="panel-title"><span>Record fields</span><span>open</span></div>
+        <div class="data-table">
+          <div class="data-row"><span>Risk</span><strong>{entry.data.hazardLevel}</strong></div>
+          <div class="data-row"><span>Origin</span><strong>{entry.data.gameSource}</strong></div>
+          <div class="data-row"><span>Entity ID</span><strong>{entry.data.entityId}</strong></div>
+          <div class="data-row"><span>Weakness</span><strong>{entry.data.weakness ?? "unknown"}</strong></div>
+          <div class="data-row"><span>Population</span><strong>{telemetry?.live_population?.toLocaleString("en-US") ?? "offline"}</strong></div>
+          <div class="data-row"><span>Sync</span><strong id={`sync-${entry.data.entityId}`}>{telemetry?.last_mutation_sync ?? "offline"}</strong></div>
+        </div>
+        <a href="/">Return to matrix</a>
+        {relatedGuides.map((guide) => <a href={`/guides/${guide.slug}/`}>Related: {guide.data.title}</a>)}
+        <AdSlot label="AdSense in-article 300x250" />
+      </aside>
+    </section>
+  </main>
+</BaseLayout>

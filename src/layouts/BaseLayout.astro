@@ -1,0 +1,52 @@
+---
+import { getCollection } from "astro:content";
+import siteConfig from "../data/site-config.json";
+
+interface Props {
+  title: string;
+  description: string;
+  current?: "matrix" | "entity" | "guide";
+}
+
+const { title, description, current = "matrix" } = Astro.props;
+const [entities, guides] = await Promise.all([
+  getCollection("entities"),
+  getCollection("guides")
+]);
+const navEntity = entities.find((entry) => entry.data.entityId === siteConfig.navigation.entityId) ?? entities.find((entry) => entry.data.featured) ?? entities[0];
+const navGuide = guides.find((entry) => entry.data.guideId === siteConfig.navigation.guideId) ?? guides.find((entry) => entry.data.featured) ?? guides[0];
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <link rel="icon" href="/favicon.svg" />
+    <link rel="stylesheet" href="/assets/styles/site.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="Horrordex home">
+        <span class="brand-mark">HX</span>
+        <span class="brand-text">
+          <strong>HORRORDEX.XYZ</strong>
+          <span>classified survival index</span>
+        </span>
+      </a>
+      <nav class="nav" aria-label="Primary navigation">
+        <a href="/" aria-current={current === "matrix" ? "page" : undefined}>Matrix</a>
+        {navEntity && <a href={`/entities/${navEntity.slug}/`} aria-current={current === "entity" ? "page" : undefined}>Dossier: {navEntity.data.title.split("//")[0].trim()}</a>}
+        {navGuide && <a href={`/guides/${navGuide.slug}/`} aria-current={current === "guide" ? "page" : undefined}>{navGuide.data.title}</a>}
+      </nav>
+    </header>
+    <slot />
+    <footer class="footer">
+      Horrordex MVP is a static Jamstack archive. Live numbers are refreshed at build time from JSON, then deployed to the edge.
+    </footer>
+  </body>
+</html>

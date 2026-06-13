@@ -1,0 +1,50 @@
+name: Horrordex Static Synchronization Pipeline
+
+on:
+  schedule:
+    - cron: "0 */6 * * *"
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  bake-static-site:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      deployments: write
+    steps:
+      - name: Open Secure Workspace
+        uses: actions/checkout@v4
+
+      - name: Initialize Environment
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Load Dependencies
+        run: npm ci
+
+      - name: Sync Static Content and Download Assets
+        run: npm run sync:content
+
+      - name: Execute Build-Time Roblox Telemetry Sync
+        run: npm run sync:roblox
+
+      - name: Commit Scraped Static Data Back to Git
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore(data): refresh static-dynamic matrix data [skip ci]"
+          file_pattern: "src/content src/data/roblox-stats.json public/assets/img"
+
+      - name: Compile Optimized Static Production
+        run: npm run build
+
+      - name: Push Assets to Cloudflare Pages CDN Edge
+        uses: cloudflare/pages-action@v1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          projectName: horrordex-xyz
+          directory: ./dist

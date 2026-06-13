@@ -1,0 +1,12 @@
+{
+  "hero": {
+    "featuredEntityId": "REF_0992",
+    "primaryGuideId": "REF_LEVEL_0",
+    "image": "/assets/img/liminal-hallway.jpg",
+    "caption": "CAM_09 / corridor drift"
+  },
+  "navigation": {
+    "entityId": "REF_0992",
+    "guideId": "REF_LEVEL_0"
+  }
+}

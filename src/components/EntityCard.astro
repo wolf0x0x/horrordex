@@ -1,0 +1,39 @@
+---
+interface Props {
+  title: string;
+  href: string;
+  recordId: string;
+  image: string;
+  summary: string;
+  hazardLevel: string;
+  source: string;
+  visualEffect?: string;
+  population?: number;
+  featured?: boolean;
+}
+
+const { title, href, recordId, image, summary, hazardLevel, source, visualEffect, population, featured = false } = Astro.props;
+const severity = hazardLevel.includes("Fatal") ? "red" : hazardLevel.includes("Hostile") ? "amber" : "green";
+---
+<article
+  class:list={["entity-card", { featured }]}
+  data-record-card
+  data-record-title={title.toLowerCase()}
+  data-record-origin={source}
+  data-record-severity={severity}
+>
+  <div class="entity-visual">
+    <img src={image} alt={`${title} visual reference`} loading="eager" />
+    {visualEffect === "seek-apparition" && <div class="seek-apparition" aria-hidden="true"><div class="seek-body"></div></div>}
+  </div>
+  <div class="entity-copy">
+    <span class:list={["risk-tag", severity]}>{hazardLevel}</span>
+    <h3>{title}</h3>
+    <p>{summary}</p>
+    <div class="entity-meta">
+      <span>Origin: {source}</span>
+      <span>Population: <span id={`live-${recordId}`}>{population?.toLocaleString("en-US") ?? "offline"}</span></span>
+    </div>
+    <a class="terminal-button" href={href}>Open record</a>
+  </div>
+</article>

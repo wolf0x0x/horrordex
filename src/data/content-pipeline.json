@@ -1,0 +1,97 @@
+{
+  "assets": [
+    {
+      "path": "public/assets/img/backrooms-level-0.jpg",
+      "url": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Backrooms_model.jpg"
+    },
+    {
+      "path": "public/assets/img/liminal-hallway.jpg",
+      "url": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Forgotten_Memories_of_Exploring_a_Liminal_Space.jpg"
+    },
+    {
+      "path": "public/assets/img/hospital-corridor.jpg",
+      "url": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Corridor_on_the_second_level_-_N%C3%84L_hospital_3.jpg"
+    }
+  ],
+  "entities": [
+    {
+      "slug": "seek",
+      "frontmatter": {
+        "title": "SEEK // 寻求者",
+        "entityId": "REF_0992",
+        "gameSource": "Roblox DOORS",
+        "hazardLevel": "Class 9: Fatal Chase",
+        "summary": "A glossy black humanoid pursuit entity that turns route reading into a panic-compression test.",
+        "image": "/assets/img/liminal-hallway.jpg",
+        "liveTemplate": true,
+        "featured": true,
+        "visualEffect": "seek-apparition",
+        "telemetryUniverseId": "6514216892",
+        "weakness": "Forward route discipline",
+        "route": "Warning eyes -> materialization -> pursuit tunnel",
+        "relatedGuideIds": ["REF_LEVEL_0"],
+        "assetCredits": [
+          {
+            "title": "Forgotten Memories of Exploring a Liminal Space.jpg",
+            "creator": "Michael Savidge",
+            "license": "CC BY-SA 4.0",
+            "source": "https://commons.wikimedia.org/wiki/File:Forgotten_Memories_of_Exploring_a_Liminal_Space.jpg"
+          }
+        ]
+      },
+      "body": "Seek is preceded by clusters of watchful eyes and a sharp change in corridor pressure. Once materialized, the entity punishes hesitation more reliably than slow reflexes.\n\nThe safe response is simple and difficult: stop looting, read the next opening, crouch before obstacles, and never turn around to inspect the threat.\n\n## Field Notes\n\n- Warning eyes should be treated as a countdown.\n- Blue-lit or visually emphasized doors are usually the safe route.\n- Sound confirms pursuit state, but visual geometry decides survival.\n- The most common failure is entering the chase with attention split between loot and navigation."
+    },
+    {
+      "slug": "backrooms-hound",
+      "frontmatter": {
+        "title": "HOUND // 后室猎犬",
+        "entityId": "REF_BKR_HOUND",
+        "gameSource": "The Backrooms",
+        "hazardLevel": "Class 5: Hostile",
+        "summary": "A low-profile hostile entity associated with pursuit corridors, noise lures, and poor visibility.",
+        "image": "/assets/img/hospital-corridor.jpg",
+        "liveTemplate": true,
+        "featured": false,
+        "telemetryUniverseId": "921849201",
+        "weakness": "Silence, distance, hard corners",
+        "route": "Noise contact -> line-of-sight break -> exit drift",
+        "relatedGuideIds": ["REF_LEVEL_0"],
+        "assetCredits": [
+          {
+            "title": "Corridor on the second level - NAL hospital 3.jpg",
+            "creator": "W.carter",
+            "license": "CC0",
+            "source": "https://commons.wikimedia.org/wiki/File:Corridor_on_the_second_level_-_N%C3%84L_hospital_3.jpg"
+          }
+        ]
+      },
+      "body": "The Hound record exists as the first non-Roblox expansion slot in the MVP matrix. It gives the content model room to support creepypasta entities, fan maps, and game-specific variants without changing the schema.\n\n## Field Notes\n\n- Avoid sprinting unless the entity has confirmed line of sight.\n- Take wide turns to force reacquisition.\n- Treat dead-silent corridors as possible reset zones."
+    }
+  ],
+  "guides": [
+    {
+      "slug": "level-0",
+      "frontmatter": {
+        "title": "Guide: Level 0 Escape Route",
+        "guideId": "REF_LEVEL_0",
+        "topic": "The Backrooms",
+        "hazardLevel": "Class 1: Environmental",
+        "summary": "Beginner-safe survival guide for Backrooms Level 0: orientation, loop detection, resource discipline, and exit pattern recognition.",
+        "image": "/assets/img/backrooms-level-0.jpg",
+        "updated": "2026-06-13",
+        "featured": true,
+        "telemetryUniverseId": "6514216892",
+        "relatedEntityIds": ["REF_0992", "REF_BKR_HOUND"],
+        "assetCredits": [
+          {
+            "title": "Backrooms model.jpg",
+            "creator": "Huuxloc / Belbury",
+            "license": "CC BY 4.0",
+            "source": "https://commons.wikimedia.org/wiki/File:Backrooms_model.jpg"
+          }
+        ]
+      },
+      "body": "Level 0 is dangerous because it makes almost-correct choices feel identical. The correct survival posture is not bravery; it is boring consistency.\n\n## First Minute\n\nStand still, choose one visual anchor, and listen for stable sound sources. Your first goal is preventing circular movement.\n\n## Navigation Logic\n\nIf three landmarks repeat in the same order, stop and reverse for two room transitions. Then pick the first branch with different ceiling geometry.\n\n## Resource Discipline\n\nWalk by default. Save light for decision points, not straight corridors. Keep notes because Level 0 is visually simple enough to make memory unreliable.\n\n## Exit Patterns\n\nValid exits usually create a sensory break: different floor sound, changed air pressure, altered light color, or a new mechanical rhythm."
+    }
+  ]
+}
