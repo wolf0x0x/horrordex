@@ -3,6 +3,8 @@ import { getCollection, render } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import AdSlot from "../../components/AdSlot.astro";
 import stats from "../../data/roblox-stats.json";
+import siteConfig from "../../data/site-config.json";
+import siteConfig from "../../data/site-config.json";
 
 export async function getStaticPaths() {
   const guides = await getCollection("guides");
@@ -19,7 +21,7 @@ const relatedEntities = entities.filter((entity) => entry.data.relatedEntityIds.
 const telemetry = stats[entry.data.guideId] ?? null;
 ---
 <BaseLayout
-  title={`${entry.data.title} | Horrordex Survival Guide`}
+  title={`${entry.data.title} | ${siteConfig.seo.guideTitleSuffix}`}
   description={entry.data.summary}
   current="guide"
 >
@@ -62,7 +64,7 @@ const telemetry = stats[entry.data.guideId] ?? null;
         </div>
         <a href="/">Return to matrix</a>
         {relatedEntities.map((entity) => <a href={`/entities/${entity.slug}/`}>Related: {entity.data.title}</a>)}
-        <AdSlot label="AdSense sticky sidebar 300x600" />
+        <AdSlot label="AdSense sticky sidebar 300x600" slotId={siteConfig.ads.slots.stickySidebar} />
       </aside>
     </section>
   </main>

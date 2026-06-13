@@ -7,18 +7,20 @@ interface Props {
   summary: string;
   hazardLevel: string;
   source: string;
+  categoryHref?: string;
   visualEffect?: string;
   population?: number;
   featured?: boolean;
 }
 
-const { title, href, recordId, image, summary, hazardLevel, source, visualEffect, population, featured = false } = Astro.props;
+const { title, href, recordId, image, summary, hazardLevel, source, categoryHref, visualEffect, population, featured = false } = Astro.props;
 const severity = hazardLevel.includes("Fatal") ? "red" : hazardLevel.includes("Hostile") ? "amber" : "green";
 ---
 <article
   class:list={["entity-card", { featured }]}
   data-record-card
   data-record-title={title.toLowerCase()}
+  data-record-summary={summary.toLowerCase()}
   data-record-origin={source}
   data-record-severity={severity}
 >
@@ -31,7 +33,7 @@ const severity = hazardLevel.includes("Fatal") ? "red" : hazardLevel.includes("H
     <h3>{title}</h3>
     <p>{summary}</p>
     <div class="entity-meta">
-      <span>Origin: {source}</span>
+      <span>Origin: {categoryHref ? <a href={categoryHref}>{source}</a> : source}</span>
       <span>Population: <span id={`live-${recordId}`}>{population?.toLocaleString("en-US") ?? "offline"}</span></span>
     </div>
     <a class="terminal-button" href={href}>Open record</a>

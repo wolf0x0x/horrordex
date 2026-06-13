@@ -1,0 +1,109 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import EntityCard from "../../components/EntityCard.astro";
+import AdSlot from "../../components/AdSlot.astro";
+import stats from "../../data/roblox-stats.json";
+import siteConfig from "../../data/site-config.json";
+
+function slugify(value: string) {
+  return value.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+}
+
+export async function getStaticPaths() {
+  const pathSlug = (value: string) => value.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+  const [entities, guides] = await Promise.all([
+    getCollection("entities"),
+    getCollection("guides")
+  ]);
+  const origins = [...new Set([
+    ...entities.map((entry) => entry.data.gameSource),
+    ...guides.map((entry) => entry.data.topic)
+  ])];
+
+  return origins.map((origin) => ({
+    params: { slug: pathSlug(origin) },
+    props: { origin }
+  }));
+}
+
+const { origin } = Astro.props;
+const [entities, guides] = await Promise.all([
+  getCollection("entities"),
+  getCollection("guides")
+]);
+const categoryEntities = entities.filter((entry) => entry.data.gameSource === origin);
+const categoryGuides = guides.filter((entry) => entry.data.topic === origin);
+const totalPopulation = [...categoryEntities, ...categoryGuides].reduce((sum, entry) => {
+  const recordId = "entityId" in entry.data ? entry.data.entityId : entry.data.guideId;
+  return sum + Number(stats[recordId]?.live_population || 0);
+}, 0);
+---
+<BaseLayout
+  title={`${origin} Classified Records | ${siteConfig.brand.name}`}
+  description={`Static Horrordex records filed under ${origin}.`}
+  current="matrix"
+>
+  <main class="site-shell">
+    <section class="category-head" aria-labelledby="page-title">
+      <p class="eyebrow">CATEGORY_VECTOR / {slugify(origin)}</p>
+      <h1 id="page-title">{origin}</h1>
+      <p class="lead">
+        Filtered static dossier index for {origin}. These records are generated from content collections and share the same build-time telemetry matrix as the home page.
+      </p>
+    </section>
+
+    <section class="stats-grid" aria-label="Category telemetry">
+      <div class="stat"><strong>{categoryEntities.length}</strong><span>Entity records</span></div>
+      <div class="stat"><strong>{categoryGuides.length}</strong><span>Survival guides</span></div>
+      <div class="stat"><strong>{totalPopulation.toLocaleString("en-US")}</strong><span>Players baked in</span></div>
+      <div class="stat"><strong>1</strong><span>Static category</span></div>
+    </section>
+
+    <div class="matrix-layout">
+      <aside class="panel" aria-label="Category actions">
+        <div class="panel-title"><span>Category controls</span><span>static</span></div>
+        <a class="terminal-button full-button" href={`/?origin=${encodeURIComponent(origin)}#matrix`}>Open in matrix</a>
+        <a class="terminal-button full-button" href="/">Return home</a>
+        <AdSlot label="AdSense category sidebar 336x280" slotId={siteConfig.ads.slots.sidebarNative} />
+      </aside>
+
+      <section aria-labelledby="category-records">
+        <div class="section-head">
+          <h2 id="category-records">Category Records</h2>
+          <p class="micro">source: {origin}</p>
+        </div>
+        <div class="entity-grid">
+          {categoryEntities.map((entry) => (
+            <EntityCard
+              title={entry.data.title}
+              href={`/entities/${entry.slug}/`}
+              recordId={entry.data.entityId}
+              image={entry.data.image}
+              summary={entry.data.summary}
+              hazardLevel={entry.data.hazardLevel}
+              source={entry.data.gameSource}
+              categoryHref={`/categories/${slugify(entry.data.gameSource)}/`}
+              visualEffect={entry.data.visualEffect}
+              population={stats[entry.data.entityId]?.live_population}
+              featured={entry.data.featured}
+            />
+          ))}
+          {categoryGuides.map((entry) => (
+            <EntityCard
+              title={entry.data.title}
+              href={`/guides/${entry.slug}/`}
+              recordId={entry.data.guideId}
+              image={entry.data.image}
+              summary={entry.data.summary}
+              hazardLevel={entry.data.hazardLevel}
+              source={entry.data.topic}
+              categoryHref={`/categories/${slugify(entry.data.topic)}/`}
+              population={stats[entry.data.guideId]?.live_population}
+            />
+          ))}
+        </div>
+      </section>
+    </div>
+  </main>
+</BaseLayout>

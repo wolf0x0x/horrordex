@@ -1,4 +1,39 @@
 {
+  "brand": {
+    "name": "Horrordex",
+    "domain": "horrordex.xyz",
+    "mark": "HX",
+    "tagline": "classified survival index",
+    "footer": "Horrordex MVP is a static Jamstack archive. Live numbers are refreshed at build time from JSON, then deployed to the edge."
+  },
+  "seo": {
+    "homeTitle": "Horrordex Entity Matrix | Roblox Horror & Backrooms Database",
+    "homeDescription": "Static MVP for Horrordex: Roblox horror entity dossiers, Backrooms survival guides, build-time telemetry, and edge-ready SEO pages.",
+    "entityTitleSuffix": "Horrordex Entity Dossier",
+    "guideTitleSuffix": "Horrordex Survival Guide",
+    "themeColor": "#06080c"
+  },
+  "analytics": {
+    "measurementId": "G-2TVGXD1WHL"
+  },
+  "icons": {
+    "favicon": "/favicon.svg",
+    "favicon32": "/favicon-32x32.png",
+    "shortcutIcon": "/favicon-32x32.png",
+    "appleTouchIcon": "/apple-touch-icon.png",
+    "icon192": "/icon-192x192.png",
+    "icon512": "/icon-512x512.png",
+    "manifest": "/site.webmanifest",
+    "maskIcon": "/favicon.svg"
+  },
+  "ads": {
+    "client": "ca-pub-8695398658548679",
+    "slots": {
+      "sidebarNative": "",
+      "inArticle": "",
+      "stickySidebar": ""
+    }
+  },
   "hero": {
     "featuredEntityId": "REF_0992",
     "primaryGuideId": "REF_LEVEL_0",

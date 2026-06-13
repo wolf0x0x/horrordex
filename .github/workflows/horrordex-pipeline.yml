@@ -29,6 +29,9 @@ jobs:
       - name: Sync Static Content and Download Assets
         run: npm run sync:content
 
+      - name: Generate Browser Icons
+        run: npm run icons
+
       - name: Execute Build-Time Roblox Telemetry Sync
         run: npm run sync:roblox
 
@@ -36,7 +39,7 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "chore(data): refresh static-dynamic matrix data [skip ci]"
-          file_pattern: "src/content src/data/roblox-stats.json public/assets/img"
+          file_pattern: "src/content src/data/roblox-stats.json public/assets/img public/favicon-32x32.png public/apple-touch-icon.png public/icon-192x192.png public/icon-512x512.png"
 
       - name: Compile Optimized Static Production
         run: npm run build

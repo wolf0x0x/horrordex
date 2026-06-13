@@ -8,6 +8,7 @@ import siteConfig from "../data/site-config.json";
 
 const entities = await getCollection("entities");
 const guides = await getCollection("guides");
+const slugify = (value: string) => value.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 const totalPopulation = Object.values(stats).reduce((sum, item) => sum + Number(item.live_population || 0), 0);
 const featuredEntity = entities.find((entry) => entry.data.entityId === siteConfig.hero.featuredEntityId) ?? entities.find((entry) => entry.data.featured) ?? entities[0];
 const primaryGuide = guides.find((entry) => entry.data.guideId === siteConfig.hero.primaryGuideId) ?? guides.find((entry) => entry.data.featured) ?? guides[0];
@@ -16,6 +17,10 @@ const origins = [...new Set([
   ...entities.map((entry) => entry.data.gameSource),
   ...guides.map((entry) => entry.data.topic)
 ])];
+const originCategories = origins.map((origin) => ({
+  name: origin,
+  href: `/categories/${slugify(origin)}/`
+}));
 const severities = [
   { label: "Safe", value: "green" },
   { label: "Hostile", value: "amber" },
@@ -23,8 +28,8 @@ const severities = [
 ];
 ---
 <BaseLayout
-  title="Horrordex Entity Matrix | Roblox Horror & Backrooms Database"
-  description="Static MVP for Horrordex: Roblox horror entity dossiers, Backrooms survival guides, build-time telemetry, and edge-ready SEO pages."
+  title={siteConfig.seo.homeTitle}
+  description={siteConfig.seo.homeDescription}
   current="matrix"
 >
   <main class="site-shell">
@@ -41,7 +46,7 @@ const severities = [
         </div>
       </div>
       <figure class="hero-media">
-        <img src={siteConfig.hero.image ?? featuredEntity?.data.image} alt="Horrordex featured dossier visual" />
+        <img src={siteConfig.hero.image ?? featuredEntity?.data.image} alt={`${siteConfig.brand.name} featured dossier visual`} />
         <figcaption class="caption-strip">
           <span>{siteConfig.hero.caption ?? featuredEntity?.data.route ?? "featured dossier"}</span>
           <span>LIVE {totalPopulation.toLocaleString("en-US")}</span>
@@ -61,8 +66,12 @@ const severities = [
         <div class="panel-title"><span>Input parameters</span><span>v0.1</span></div>
         <input class="input" type="search" placeholder="LOCATE_ENTITY..." aria-label="Search records" data-record-search />
         <div class="filter-stack">
-          {origins.map((origin) => (
-            <label class="check-row"><input type="checkbox" value={origin} checked data-origin-filter /> {origin}</label>
+          {originCategories.map((origin) => (
+            <label class="check-row">
+              <input type="checkbox" value={origin.name} checked data-origin-filter />
+              <span>{origin.name}</span>
+              <a href={origin.href} aria-label={`Open ${origin.name} category`}>category</a>
+            </label>
           ))}
         </div>
         <div class="badge-row">
@@ -70,7 +79,7 @@ const severities = [
             <label class:list={["risk-tag", severity.value]}><input type="checkbox" value={severity.value} checked data-severity-filter /> {severity.label}</label>
           ))}
         </div>
-        <AdSlot label="AdSense native banner 336x280" />
+        <AdSlot label="AdSense native banner 336x280" slotId={siteConfig.ads.slots.sidebarNative} />
       </aside>
 
       <section aria-labelledby="matrix-title">
@@ -88,6 +97,7 @@ const severities = [
               summary={entry.data.summary}
               hazardLevel={entry.data.hazardLevel}
               source={entry.data.gameSource}
+              categoryHref={`/categories/${slugify(entry.data.gameSource)}/`}
               visualEffect={entry.data.visualEffect}
               population={stats[entry.data.entityId]?.live_population}
               featured={entry.data.featured}
@@ -102,39 +112,120 @@ const severities = [
               summary={entry.data.summary}
               hazardLevel={entry.data.hazardLevel}
               source={entry.data.topic}
+              categoryHref={`/categories/${slugify(entry.data.topic)}/`}
               population={stats[entry.data.guideId]?.live_population}
             />
           ))}
         </div>
+        <div class="pager" aria-label="Matrix pagination">
+          <button type="button" class="terminal-button" data-page-prev>Previous</button>
+          <span class="micro" data-page-status>Page 1 / 1</span>
+          <button type="button" class="terminal-button" data-page-next>Next</button>
+        </div>
+        <p class="empty-state" data-empty-state hidden>No records match this filter.</p>
       </section>
     </div>
   </main>
   <script is:inline>
+    const pageSize = 6;
     const search = document.querySelector("[data-record-search]");
     const originFilters = Array.from(document.querySelectorAll("[data-origin-filter]"));
     const severityFilters = Array.from(document.querySelectorAll("[data-severity-filter]"));
     const cards = Array.from(document.querySelectorAll("[data-record-card]"));
+    const prevButton = document.querySelector("[data-page-prev]");
+    const nextButton = document.querySelector("[data-page-next]");
+    const pageStatus = document.querySelector("[data-page-status]");
+    const emptyState = document.querySelector("[data-empty-state]");
+    let activePage = 1;
 
     function selectedValues(inputs) {
       return new Set(inputs.filter((input) => input.checked).map((input) => input.value));
     }
 
-    function applyFilters() {
-      const query = (search?.value ?? "").trim().toLowerCase();
-      const origins = selectedValues(originFilters);
-      const severities = selectedValues(severityFilters);
-
-      for (const card of cards) {
-        const matchesQuery = !query || card.dataset.recordTitle.includes(query);
-        const matchesOrigin = origins.has(card.dataset.recordOrigin);
-        const matchesSeverity = severities.has(card.dataset.recordSeverity);
-        card.hidden = !(matchesQuery && matchesOrigin && matchesSeverity);
+    function setCheckedFromParam(inputs, values) {
+      if (!values.size) return;
+      for (const input of inputs) {
+        input.checked = values.has(input.value);
       }
     }
 
-    search?.addEventListener("input", applyFilters);
-    for (const input of [...originFilters, ...severityFilters]) {
-      input.addEventListener("change", applyFilters);
+    function readStateFromUrl() {
+      const params = new URLSearchParams(window.location.search);
+      search.value = params.get("q") ?? "";
+      setCheckedFromParam(originFilters, new Set((params.get("origin") ?? "").split(",").filter(Boolean)));
+      setCheckedFromParam(severityFilters, new Set((params.get("severity") ?? "").split(",").filter(Boolean)));
+      activePage = Math.max(1, Number(params.get("page") ?? 1) || 1);
     }
+
+    function writeStateToUrl(totalPages) {
+      const params = new URLSearchParams();
+      const query = search.value.trim();
+      const origins = [...selectedValues(originFilters)];
+      const severities = [...selectedValues(severityFilters)];
+      const boundedPage = Math.min(Math.max(activePage, 1), totalPages);
+
+      if (query) params.set("q", query);
+      if (origins.length && origins.length !== originFilters.length) params.set("origin", origins.join(","));
+      if (severities.length && severities.length !== severityFilters.length) params.set("severity", severities.join(","));
+      if (boundedPage > 1) params.set("page", String(boundedPage));
+
+      const queryString = params.toString();
+      const nextUrl = `${window.location.pathname}${queryString ? `?${queryString}` : ""}${window.location.hash || "#matrix"}`;
+      window.history.replaceState(null, "", nextUrl);
+    }
+
+    function applyFilters({ updateUrl = true } = {}) {
+      const query = (search?.value ?? "").trim().toLowerCase();
+      const origins = selectedValues(originFilters);
+      const severities = selectedValues(severityFilters);
+      const matches = [];
+
+      for (const card of cards) {
+        const searchable = `${card.dataset.recordTitle} ${card.dataset.recordSummary}`;
+        const matchesQuery = !query || searchable.includes(query);
+        const matchesOrigin = origins.has(card.dataset.recordOrigin);
+        const matchesSeverity = severities.has(card.dataset.recordSeverity);
+        if (matchesQuery && matchesOrigin && matchesSeverity) {
+          matches.push(card);
+        }
+        card.hidden = true;
+      }
+
+      const totalPages = Math.max(1, Math.ceil(matches.length / pageSize));
+      activePage = Math.min(Math.max(activePage, 1), totalPages);
+      const start = (activePage - 1) * pageSize;
+      for (const card of matches.slice(start, start + pageSize)) {
+        card.hidden = false;
+      }
+
+      pageStatus.textContent = `Page ${activePage} / ${totalPages} · ${matches.length} records`;
+      prevButton.disabled = activePage <= 1;
+      nextButton.disabled = activePage >= totalPages;
+      emptyState.hidden = matches.length > 0;
+
+      if (updateUrl) writeStateToUrl(totalPages);
+    }
+
+    readStateFromUrl();
+    applyFilters({ updateUrl: false });
+
+    search?.addEventListener("input", () => {
+      activePage = 1;
+      applyFilters();
+    });
+    for (const input of [...originFilters, ...severityFilters]) {
+      input.addEventListener("change", () => {
+        activePage = 1;
+        applyFilters();
+      });
+    }
+    prevButton?.addEventListener("click", () => {
+      activePage -= 1;
+      applyFilters();
+    });
+    nextButton?.addEventListener("click", () => {
+      activePage += 1;
+      applyFilters();
+    });
   </script>
 </BaseLayout>

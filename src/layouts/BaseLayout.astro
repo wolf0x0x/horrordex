@@ -26,16 +26,31 @@ const navGuide = guides.find((entry) => entry.data.guideId === siteConfig.naviga
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
-    <link rel="icon" href="/favicon.svg" />
+    <meta name="theme-color" content={siteConfig.seo.themeColor} />
+    <link rel="icon" type="image/svg+xml" href={siteConfig.icons.favicon} />
+    <link rel="icon" type="image/png" sizes="32x32" href={siteConfig.icons.favicon32} />
+    <link rel="shortcut icon" type="image/png" href={siteConfig.icons.shortcutIcon} />
+    <link rel="apple-touch-icon" href={siteConfig.icons.appleTouchIcon} />
+    <link rel="mask-icon" href={siteConfig.icons.maskIcon} color={siteConfig.seo.themeColor} />
+    <link rel="manifest" href={siteConfig.icons.manifest} />
     <link rel="stylesheet" href="/assets/styles/site.css" />
+    <script async src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${siteConfig.ads.client}`}
+            crossorigin="anonymous"></script>
+    <script async src={`https://www.googletagmanager.com/gtag/js?id=${siteConfig.analytics.measurementId}`}></script>
+    <script is:inline define:vars={{ measurementId: siteConfig.analytics.measurementId }}>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag("js", new Date());
+      gtag("config", measurementId);
+    </script>
   </head>
   <body>
     <header class="topbar">
-      <a class="brand" href="/" aria-label="Horrordex home">
-        <span class="brand-mark">HX</span>
+      <a class="brand" href="/" aria-label={`${siteConfig.brand.name} home`}>
+        <span class="brand-mark">{siteConfig.brand.mark}</span>
         <span class="brand-text">
-          <strong>HORRORDEX.XYZ</strong>
-          <span>classified survival index</span>
+          <strong>{siteConfig.brand.domain.toUpperCase()}</strong>
+          <span>{siteConfig.brand.tagline}</span>
         </span>
       </a>
       <nav class="nav" aria-label="Primary navigation">
@@ -46,7 +61,7 @@ const navGuide = guides.find((entry) => entry.data.guideId === siteConfig.naviga
     </header>
     <slot />
     <footer class="footer">
-      Horrordex MVP is a static Jamstack archive. Live numbers are refreshed at build time from JSON, then deployed to the edge.
+      {siteConfig.brand.footer}
     </footer>
   </body>
 </html>

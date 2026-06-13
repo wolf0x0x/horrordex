@@ -5,14 +5,15 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev",
+    "icons": "node scripts/generate-icons.js",
     "sync:content": "node scripts/sync-static-content.js",
     "sync:roblox": "node scripts/fetch-roblox-status.js",
     "build": "astro build",
-    "build:sync": "npm run sync:content && npm run sync:roblox && astro build",
+    "build:sync": "npm run icons && npm run sync:content && npm run sync:roblox && astro build",
     "preview": "astro preview"
   },
   "dependencies": {
-    "astro": "^5.9.0"
-  },
-  "devDependencies": {}
+    "astro": "^5.9.0",
+    "sharp": "^0.34.5"
+  }
 }
