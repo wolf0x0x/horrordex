@@ -9,7 +9,7 @@ Pure static Jamstack MVP for `horrordex.xyz`.
 - Build-time Roblox telemetry baked into HTML from `src/data/roblox-stats.json`.
 - Data-driven navigation, related links, hero media, visual effects, and asset attribution.
 - Client-side matrix search, URL query filters, pagination, and static category pages with no external runtime dependency.
-- Google Analytics `G-2TVGXD1WHL`, AdSense Auto Ads, and `ads.txt`.
+- Google Analytics `G-1B74LJ1D20`, AdSense Auto Ads, and `ads.txt`.
 - `scripts/sync-static-content.js` for Markdown generation and image download.
 - `scripts/seed-seo-guides.js` for the first SEO guide matrix and generated WebP cover assets.
 - `scripts/fetch-roblox-status.js` for scheduled static data refresh.
