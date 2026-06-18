@@ -80,5 +80,39 @@
     ],
     "entityId": "REF_0992",
     "guideId": "REF_LEVEL_0"
+  },
+  "categories": {
+    "The Backrooms": {
+      "description": "Backrooms lore, survival guides, entity-adjacent records, and liminal horror recommendations collected into one static archive.",
+      "focus": "Backrooms lore, survival routes, and related horror guides"
+    },
+    "Horror Games": {
+      "description": "Horror game rankings, co-op scare recommendations, indie dread picks, and evergreen player guides for modern horror discovery.",
+      "focus": "Horror game rankings, recommendations, and evergreen buyer guidance"
+    },
+    "Roblox": {
+      "description": "Roblox beginner guides, safety notes, onboarding help, and horror-game discovery routes for new players.",
+      "focus": "Roblox setup, safety, and game discovery"
+    },
+    "Minecraft": {
+      "description": "Minecraft survival guidance focused on first-day routing, progression, food, shelter, mining, and long-term base planning.",
+      "focus": "Minecraft beginner survival progression"
+    },
+    "Crazy Games": {
+      "description": "Browser game rankings and quick-play recommendations built for no-download discovery, school-break sessions, and casual competition.",
+      "focus": "Browser game rankings and fast no-download play"
+    },
+    "Casual Games": {
+      "description": "Low-pressure game recommendations across browser, puzzle, cozy, and sandbox categories for readers who want relaxing sessions.",
+      "focus": "Relaxed and casual game recommendations"
+    },
+    "Sandbox Games": {
+      "description": "Sandbox and building-game recommendations covering survival crafting, creativity, automation, co-op worlds, and long-form progression.",
+      "focus": "Sandbox building and survival crafting recommendations"
+    },
+    "Roblox DOORS": {
+      "description": "Entity-focused records tied to Roblox horror, readable chase mechanics, and player-facing survival context.",
+      "focus": "Roblox horror entities and chase survival"
+    }
   }
 }

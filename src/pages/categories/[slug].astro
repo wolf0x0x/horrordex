@@ -34,23 +34,38 @@ const [entities, guides] = await Promise.all([
 ]);
 const categoryEntities = entities.filter((entry) => entry.data.gameSource === origin);
 const categoryGuides = guides.filter((entry) => entry.data.topic === origin);
+const categoryMeta = siteConfig.categories?.[origin] ?? {
+  description: `Static Horrordex records filed under ${origin}.`,
+  focus: `${origin} records`
+};
 const totalPopulation = [...categoryEntities, ...categoryGuides].reduce((sum, entry) => {
   const recordId = "entityId" in entry.data ? entry.data.entityId : entry.data.guideId;
   return sum + Number(stats[recordId]?.live_population || 0);
 }, 0);
+const categorySchema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": `${origin} | Horrordex`,
+  "description": categoryMeta.description,
+  "about": categoryMeta.focus,
+  "isPartOf": `https://${siteConfig.brand.domain}/`,
+  "numberOfItems": categoryEntities.length + categoryGuides.length
+};
 ---
 <BaseLayout
   title={`${origin} Classified Records | ${siteConfig.brand.name}`}
-  description={`Static Horrordex records filed under ${origin}.`}
+  description={categoryMeta.description}
   current="matrix"
 >
+  <script type="application/ld+json" set:html={JSON.stringify(categorySchema)} />
   <main class="site-shell">
     <section class="category-head" aria-labelledby="page-title">
       <p class="eyebrow">CATEGORY_VECTOR / {slugify(origin)}</p>
       <h1 id="page-title">{origin}</h1>
       <p class="lead">
-        Filtered static dossier index for {origin}. These records are generated from content collections and share the same build-time telemetry matrix as the home page.
+        {categoryMeta.description}
       </p>
+      <p class="micro">Focus: {categoryMeta.focus}</p>
     </section>
 
     <section class="stats-grid" aria-label="Category telemetry">
@@ -65,6 +80,7 @@ const totalPopulation = [...categoryEntities, ...categoryGuides].reduce((sum, en
         <div class="panel-title"><span>Category controls</span><span>static</span></div>
         <a class="terminal-button full-button" href={`/?origin=${encodeURIComponent(origin)}#matrix`}>Open in matrix</a>
         <a class="terminal-button full-button" href="/">Return home</a>
+        {categoryGuides[0] && <a class="terminal-button full-button" href={`/guides/${categoryGuides[0].slug}/`}>Read lead guide</a>}
         <AdSlot label="AdSense category sidebar 336x280" slotId={siteConfig.ads.slots.sidebarNative} format="rectangle" />
       </aside>
 

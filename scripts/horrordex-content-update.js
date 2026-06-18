@@ -95,16 +95,52 @@ function countPattern(filePath, pattern) {
   return [...content.matchAll(pattern)].length;
 }
 
+function hasText(filePath, pattern) {
+  const absolute = path.join(root, filePath);
+  if (!fs.existsSync(absolute)) return false;
+  return pattern.test(fs.readFileSync(absolute, "utf8"));
+}
+
 function audit() {
   const missing = cycles.slice(0, 4).filter((cycle) => !existsTarget(cycle));
   const quality = {
     freeHorrorItems: countPattern("src/content/guides/free-horror-games-like-backrooms.md", /^\s+- name: /gm),
     crazyGamesItems: countPattern("src/content/guides/crazy-games-best-free-games.md", /^\s+- name: /gm),
     robloxFaqs: countPattern("src/content/guides/roblox-beginner-guide-2026.md", /^\s+- question: /gm),
-    minecraftFaqs: countPattern("src/content/guides/minecraft-survival-guide-2026.md", /^\s+- question: /gm)
+    minecraftFaqs: countPattern("src/content/guides/minecraft-survival-guide-2026.md", /^\s+- question: /gm),
+    bestHorrorItems: countPattern("src/content/guides/best-horror-games-2026.md", /^\s+- name: /gm),
+    backroomsFaqs: countPattern("src/content/guides/backrooms-complete-guide.md", /^\s+- question: /gm),
+    entityRecords: countPattern("src/data/content-pipeline.json", /"slug": "/g),
+    categoryMetadata: countPattern("src/data/site-config.json", /"description": "/g)
+  };
+  const modules = {
+    horrorGameNewsSynchronization: {
+      status: "checked",
+      detail: hasText("src/pages/guides/[slug].astro", /Source note: outbound links point to official store/) ? "Evergreen guide source-note flow present; no time-sensitive news article module exists in this cycle." : "No dedicated news module found; evergreen source-note check still required."
+    },
+    backroomsContentUpdates: {
+      status: quality.backroomsFaqs >= 3 ? "updated" : "needs-work",
+      detail: `backroomsFaqs=${quality.backroomsFaqs}`
+    },
+    horrorGameRankingPages: {
+      status: quality.bestHorrorItems >= 10 && quality.crazyGamesItems >= 10 ? "updated" : "needs-work",
+      detail: `bestHorrorItems=${quality.bestHorrorItems}, crazyGamesItems=${quality.crazyGamesItems}`
+    },
+    indieHorrorGameRecommendations: {
+      status: quality.freeHorrorItems >= 15 ? "checked" : "needs-work",
+      detail: `freeHorrorItems=${quality.freeHorrorItems}`
+    },
+    gameWikiContentUpdates: {
+      status: quality.entityRecords >= 2 ? "checked" : "needs-work",
+      detail: `entityRecords=${quality.entityRecords}`
+    },
+    horrorGenreTagStatistics: {
+      status: quality.categoryMetadata >= 8 ? "updated" : "needs-work",
+      detail: `categoryMetadata=${quality.categoryMetadata}`
+    }
   };
 
-  return { missing, quality };
+  return { missing, quality, modules };
 }
 
 const cycle = currentCycle();
@@ -120,6 +156,11 @@ console.log(`freeHorrorItems=${report.quality.freeHorrorItems}`);
 console.log(`crazyGamesItems=${report.quality.crazyGamesItems}`);
 console.log(`robloxFaqs=${report.quality.robloxFaqs}`);
 console.log(`minecraftFaqs=${report.quality.minecraftFaqs}`);
+console.log(`bestHorrorItems=${report.quality.bestHorrorItems}`);
+console.log(`backroomsFaqs=${report.quality.backroomsFaqs}`);
+for (const [name, module] of Object.entries(report.modules)) {
+  console.log(`module.${name}=${module.status}:${module.detail}`);
+}
 
 if (process.env.GITHUB_OUTPUT) {
   fs.appendFileSync(process.env.GITHUB_OUTPUT, [

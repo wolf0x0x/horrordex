@@ -104,6 +104,10 @@ const faqSchema = entry.data.faqs.length > 0 ? {
         {entry.data.recommendedItems.length > 0 && (
           <>
             <h2 id="ranked-list">Recommended Games</h2>
+            <p class="micro">
+              Source note: outbound links point to official store, platform, or creator discovery pages and are marked
+              <code>nofollow</code> for attribution-only reference use.
+            </p>
             <div class="recommendation-list">
               {entry.data.recommendedItems.map((item, index) => (
                 <article class="recommendation-card">
