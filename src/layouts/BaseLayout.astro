@@ -1,14 +1,27 @@
 ---
 import { getCollection } from "astro:content";
 import siteConfig from "../data/site-config.json";
+import SeoSchema from "../components/SeoSchema.astro";
+
+interface FAQItem {
+  question: string;
+  answer: string;
+}
 
 interface Props {
   title: string;
   description: string;
   current?: "matrix" | "entity" | "guide" | "none";
+  schemaType?: 'Article' | 'FAQPage' | 'WebPage';
+  schemaTitle?: string;
+  schemaUrl?: string;
+  schemaDateModified?: string;
+  schemaKeywords?: string[];
+  schemaImage?: string;
+  schemaFaq?: FAQItem[];
 }
 
-const { title, description, current = "matrix" } = Astro.props;
+const { title, description, current = "matrix", schemaType, schemaTitle, schemaUrl, schemaDateModified, schemaKeywords, schemaImage, schemaFaq } = Astro.props;
 const guides = await getCollection("guides");
 const navGuide = guides.find((entry) => entry.data.guideId === siteConfig.navigation.guideId) ?? guides.find((entry) => entry.data.featured) ?? guides[0];
 const primaryLinks = siteConfig.navigation.primaryLinks ?? [];
@@ -40,6 +53,18 @@ const primaryLinks = siteConfig.navigation.primaryLinks ?? [];
       gtag("js", new Date());
       gtag("config", measurementId);
     </script>
+    {schemaType && (
+      <SeoSchema
+        title={schemaTitle || title}
+        description={description}
+        type={schemaType}
+        url={schemaUrl}
+        dateModified={schemaDateModified}
+        keywords={schemaKeywords}
+        image={schemaImage}
+        faqData={schemaFaq}
+      />
+    )}
   </head>
   <body>
     <header class="topbar">

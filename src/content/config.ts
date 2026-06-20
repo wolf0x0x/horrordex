@@ -34,6 +34,7 @@ const guideCollection = defineCollection({
     articleType: z.string().default("guide"),
     hazardLevel: z.string(),
     summary: z.string(),
+    tldr: z.string().optional(),
     image: z.string(),
     updated: z.string(),
     featured: z.boolean().default(false),

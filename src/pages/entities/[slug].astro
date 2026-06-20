@@ -2,6 +2,7 @@
 import { getCollection, render } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import AdSlot from "../../components/AdSlot.astro";
+import Breadcrumb from "../../components/Breadcrumb.astro";
 import stats from "../../data/roblox-stats.json";
 import siteConfig from "../../data/site-config.json";
 
@@ -18,13 +19,26 @@ const { Content } = await render(entry);
 const guides = await getCollection("guides");
 const relatedGuides = guides.filter((guide) => entry.data.relatedGuideIds.includes(guide.data.guideId));
 const telemetry = stats[entry.data.entityId] ?? null;
+const entityUrl = `https://${siteConfig.brand.domain}/entities/${entry.slug}/`;
+const slugify = (value: string) => value.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+const categoryHref = `/categories/${slugify(entry.data.gameSource)}/`;
 ---
 <BaseLayout
   title={`${entry.data.title} | ${siteConfig.seo.entityTitleSuffix}`}
   description={entry.data.summary}
   current="entity"
+  schemaType="Article"
+  schemaTitle={entry.data.title.split("//")[0].trim()}
+  schemaUrl={entityUrl}
+  schemaImage={entry.data.image}
+  schemaKeywords={[entry.data.gameSource, entry.data.hazardLevel]}
 >
   <main class="site-shell">
+    <Breadcrumb crumbs={[
+      { label: "Matrix", href: "/" },
+      { label: entry.data.gameSource, href: categoryHref },
+      { label: entry.data.title.split("//")[0].trim() }
+    ]} />
     <section class="dossier-head" aria-labelledby="page-title">
       <div class="dossier-title">
         <p class="eyebrow">ANOMALY_REF / {entry.data.entityId} / {telemetry?.last_mutation_sync ?? "offline"}</p>

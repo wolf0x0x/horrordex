@@ -5,6 +5,7 @@ topic: "The Backrooms"
 articleType: "deep-dive"
 hazardLevel: "Class 2: Lore"
 summary: "A complete Backrooms guide covering the creepypasta origin, liminal-space horror, game adaptations, common levels, and why the setting became a modern horror language."
+tldr: "The Backrooms began as internet horror fiction and became a playable genre. The best games use liminal spaces, unreliable memory, and audio pressure to turn ordinary rooms into dread."
 image: "/assets/img/guides/backrooms-complete-guide.webp"
 updated: "2026-06-18"
 featured: false

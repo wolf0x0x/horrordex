@@ -1,0 +1,48 @@
+---
+interface FAQItem {
+  question: string;
+  answer: string;
+}
+
+interface Props {
+  title: string;
+  description: string;
+  url?: string;
+  type?: 'Article' | 'FAQPage' | 'WebPage';
+  faqData?: FAQItem[];
+  dateModified?: string;
+  keywords?: string[];
+  image?: string;
+}
+
+const { title, description, url, type = 'Article', faqData = [], dateModified, keywords = [], image } = Astro.props;
+
+const baseArticle = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": title,
+  "description": description,
+  ...(url ? { url, "mainEntityOfPage": url } : {}),
+  ...(dateModified ? { dateModified } : {}),
+  ...(keywords.length ? { keywords } : {}),
+  ...(image ? { image } : {})
+};
+
+const faqPage = faqData.length > 0 ? {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqData.map((item) => ({
+    "@type": "Question",
+    "name": item.question,
+    "acceptedAnswer": { "@type": "Answer", "text": item.answer }
+  }))
+} : null;
+
+const schemas = [baseArticle];
+if (type === 'FAQPage' && faqPage) {
+  schemas.push(faqPage);
+}
+---
+{schemas.map((schema) => (
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+))}

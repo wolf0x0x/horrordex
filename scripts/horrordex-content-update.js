@@ -171,6 +171,22 @@ if (process.env.GITHUB_OUTPUT) {
   ].join("\n") + "\n");
 }
 
+function appendSitemap(url) {
+  const sitemapPath = path.join(root, "public", "sitemap.xml");
+  if (!fs.existsSync(sitemapPath)) return;
+  const today = new Date().toISOString().slice(0, 10);
+  let xml = fs.readFileSync(sitemapPath, "utf8");
+  if (xml.includes(url)) return;
+  const entry = `  <url>\n    <loc>${url}</loc>\n    <lastmod>${today}</lastmod>\n    <priority>0.80</priority>\n  </url>\n`;
+  xml = xml.replace("</urlset>", `${entry}</urlset>`);
+  fs.writeFileSync(sitemapPath, xml);
+  console.log(`sitemap.appended=${url}`);
+}
+
+if (cycle.type === "new-content" && cycle.url && cycle.url !== "/") {
+  appendSitemap(`https://horrordex.xyz${cycle.url}`);
+}
+
 if (report.missing.length) {
   console.error("Missing required core articles:");
   for (const item of report.missing) {

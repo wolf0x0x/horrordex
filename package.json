@@ -12,6 +12,7 @@
     "settle:content": "node scripts/wait-for-content-settle.js",
     "sync:content": "node scripts/sync-static-content.js",
     "sync:roblox": "node scripts/fetch-roblox-status.js",
+    "inject:links": "node scripts/inject-internal-links.js",
     "build": "astro build",
     "build:sync": "npm run icons && npm run sync:content && npm run seed:guides && npm run sync:roblox && npm run clean:astro && npm run settle:content && astro build",
     "preview": "astro preview"

@@ -2,6 +2,7 @@
 import { getCollection, render } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import AdSlot from "../../components/AdSlot.astro";
+import Breadcrumb from "../../components/Breadcrumb.astro";
 import stats from "../../data/roblox-stats.json";
 import siteConfig from "../../data/site-config.json";
 
@@ -25,17 +26,8 @@ const normalizeDateClaims = (value = "") => value.replace(/\b20([3-9]\d)\b/g, St
 const displayTitle = normalizeDateClaims(entry.data.title);
 const displaySummary = normalizeDateClaims(entry.data.summary);
 const guideUrl = `https://${siteConfig.brand.domain}/guides/${entry.slug}/`;
-const articleSchema = {
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": displayTitle,
-  "description": displaySummary,
-  "url": guideUrl,
-  "mainEntityOfPage": guideUrl,
-  "dateModified": entry.data.updated,
-  "keywords": entry.data.keywords,
-  "image": entry.data.image
-};
+const slugify = (value: string) => value.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+const categoryHref = `/categories/${slugify(entry.data.topic)}/`;
 const itemListSchema = entry.data.recommendedItems.length > 0 ? {
   "@context": "https://schema.org",
   "@type": "ItemList",
@@ -47,28 +39,26 @@ const itemListSchema = entry.data.recommendedItems.length > 0 ? {
     "url": item.link
   }))
 } : null;
-const faqSchema = entry.data.faqs.length > 0 ? {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": entry.data.faqs.map((faq) => ({
-    "@type": "Question",
-    "name": faq.question,
-    "acceptedAnswer": {
-      "@type": "Answer",
-      "text": faq.answer
-    }
-  }))
-} : null;
 ---
 <BaseLayout
   title={`${displayTitle} | ${siteConfig.seo.guideTitleSuffix}`}
   description={displaySummary}
   current="guide"
+  schemaType={entry.data.faqs.length > 0 ? "FAQPage" : "Article"}
+  schemaTitle={displayTitle}
+  schemaUrl={guideUrl}
+  schemaDateModified={entry.data.updated}
+  schemaKeywords={entry.data.keywords}
+  schemaImage={entry.data.image}
+  schemaFaq={entry.data.faqs}
 >
-  <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
   {itemListSchema && <script type="application/ld+json" set:html={JSON.stringify(itemListSchema)} />}
-  {faqSchema && <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />}
   <main class="site-shell">
+    <Breadcrumb crumbs={[
+      { label: "Matrix", href: "/" },
+      { label: entry.data.topic, href: categoryHref },
+      { label: displayTitle }
+    ]} />
     <figure class="hero-media guide-hero">
       <img src={entry.data.image} alt={`${displayTitle} cover art for the ${entry.data.topic} guide`} />
       <figcaption class="caption-strip">
@@ -80,8 +70,14 @@ const faqSchema = entry.data.faqs.length > 0 ? {
     <section class="guide-layout">
       <article class="article-body">
         <p class="eyebrow">SURVIVAL ARTICLE / {entry.data.guideId}</p>
-        <h1>{displayTitle.replace("Guide:", "Guide: ")} </h1>
+        <h1>{displayTitle.replace(/^Guide:\s*/, "Guide: ")} </h1>
         <p class="lead">{displaySummary}</p>
+        {entry.data.tldr && (
+          <aside class="tldr-panel" aria-label="Quick summary">
+            <strong>TL;DR</strong>
+            <p>{entry.data.tldr}</p>
+          </aside>
+        )}
         <aside class="editorial-panel" aria-label="Editorial review note">
           <div>
             <strong>Editorial review</strong>

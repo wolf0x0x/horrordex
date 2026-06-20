@@ -5,6 +5,7 @@ topic: "Minecraft"
 articleType: "platform-guide"
 hazardLevel: "Class 1: Beginner"
 summary: "A 2026 Minecraft survival guide for new and returning players, covering first-day priorities, food, shelter, mining, villages, Nether prep, and long-term goals."
+tldr: "Minecraft survival in 2026 rewards planning over speed. First-day priorities: light, food, a bed, and a repeatable route home. Build farms before large houses and label everything."
 image: "/assets/img/guides/minecraft-survival-guide-2026.webp"
 updated: "2026-06-13"
 featured: false
