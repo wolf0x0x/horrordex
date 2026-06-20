@@ -1,8 +1,6 @@
 name: Horrordex 3-Day Content Update
 
 on:
-  schedule:
-    - cron: "0 18 */3 * *"
   workflow_dispatch:
 
 jobs:
