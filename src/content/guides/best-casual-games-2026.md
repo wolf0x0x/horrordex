@@ -5,6 +5,7 @@ topic: "Casual Games"
 articleType: "list"
 hazardLevel: "Class 0: Relaxed"
 summary: "A 2026 casual game list for players who want low-pressure, quick-start, relaxing games across browser, mobile, sandbox, puzzle, and cozy categories."
+tldr: "The best 2026 casual games prioritize quick starts, soft failure, and progress that respects breaks. Top picks span cozy farming, browser puzzles, creative sandbox modes, and relaxing simulators."
 image: "/assets/img/guides/best-casual-games-2026.webp"
 updated: "2026-06-13"
 featured: false
