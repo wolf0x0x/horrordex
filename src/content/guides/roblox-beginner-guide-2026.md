@@ -5,7 +5,6 @@ topic: "Roblox"
 articleType: "platform-guide"
 hazardLevel: "Class 1: Beginner"
 summary: "A beginner-friendly Roblox 2026 guide covering account setup, safety, discovery, Robux basics, private servers, and how to find good horror experiences."
-tldr: "New Roblox players should lock down account safety, privacy, and spending settings before joining public games. Start with readable horror or exploration experiences, preferably with friends."
 image: "/assets/img/guides/roblox-beginner-guide-2026.webp"
 updated: "2026-06-20"
 featured: true

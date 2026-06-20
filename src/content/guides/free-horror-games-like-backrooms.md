@@ -5,7 +5,6 @@ topic: "Free Horror Games"
 articleType: "list"
 hazardLevel: "Class 4: High Tension"
 summary: "A ranked guide to free horror games like Backrooms, focused on liminal spaces, maze anxiety, co-op fear, and low-cost browser or platform play."
-tldr: "Free Backrooms-like horror games rely on maze anxiety, audio pressure, and limited information rather than production value. Start with short browser or Roblox horror before moving to longer PC freeware."
 image: "/assets/img/guides/free-horror-games-like-backrooms.webp"
 updated: "2026-06-16"
 featured: true

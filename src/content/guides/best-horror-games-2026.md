@@ -5,7 +5,6 @@ topic: "Horror Games"
 articleType: "list"
 hazardLevel: "Class 5: Night Mode"
 summary: "A 2026 horror game recommendation list spanning survival horror, co-op scares, indie dread, Roblox horror, and Backrooms-like liminal fear."
-tldr: "2026 horror games span Roblox social scares, co-op investigations, indie dread, and cinematic survival horror. Pick by mood and session type rather than looking for one universal winner."
 image: "/assets/img/guides/best-horror-games-2026.webp"
 updated: "2026-06-18"
 featured: false

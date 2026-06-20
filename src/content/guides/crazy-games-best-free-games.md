@@ -5,7 +5,6 @@ topic: "Crazy Games"
 articleType: "list"
 hazardLevel: "Class 0: Browser Safe"
 summary: "A practical ranking of the best free games on Crazy Games for quick play, school-break sessions, casual competition, and no-download discovery."
-tldr: "Crazy Games works best for zero-install, short-session browser play. Strong free picks include arena shooters, build shooters, drifting, stunt racing, voxel worlds, and quick puzzle games."
 image: "/assets/img/guides/crazy-games-best-free-games.webp"
 updated: "2026-06-13"
 featured: false
