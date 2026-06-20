@@ -25,7 +25,7 @@ const severity = hazardLevel.includes("Fatal") ? "red" : hazardLevel.includes("H
   data-record-severity={severity}
 >
   <div class="entity-visual">
-    <img src={image} alt={`${title} visual reference`} loading="eager" />
+    <img src={image} alt={`${title} cover art for the ${source} record`} loading="eager" />
     {visualEffect === "seek-apparition" && <div class="seek-apparition" aria-hidden="true"><div class="seek-body"></div></div>}
   </div>
   <div class="entity-copy">

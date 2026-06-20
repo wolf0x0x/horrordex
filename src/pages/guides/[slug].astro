@@ -24,11 +24,14 @@ const currentYear = new Date().getFullYear();
 const normalizeDateClaims = (value = "") => value.replace(/\b20([3-9]\d)\b/g, String(currentYear));
 const displayTitle = normalizeDateClaims(entry.data.title);
 const displaySummary = normalizeDateClaims(entry.data.summary);
+const guideUrl = `https://${siteConfig.brand.domain}/guides/${entry.slug}/`;
 const articleSchema = {
   "@context": "https://schema.org",
   "@type": "Article",
   "headline": displayTitle,
   "description": displaySummary,
+  "url": guideUrl,
+  "mainEntityOfPage": guideUrl,
   "dateModified": entry.data.updated,
   "keywords": entry.data.keywords,
   "image": entry.data.image
@@ -67,7 +70,7 @@ const faqSchema = entry.data.faqs.length > 0 ? {
   {faqSchema && <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />}
   <main class="site-shell">
     <figure class="hero-media guide-hero">
-      <img src={entry.data.image} alt={`${displayTitle} visual reference`} />
+      <img src={entry.data.image} alt={`${displayTitle} cover art for the ${entry.data.topic} guide`} />
       <figcaption class="caption-strip">
         <span>{entry.data.topic} / {entry.data.hazardLevel}</span>
         <span>REVIEWED {entry.data.updated} / {currentYear}</span>
